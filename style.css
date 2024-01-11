@@ -55,7 +55,7 @@ hr{
 }
 #scroll{
     height: 180px;
-    overflow: auto;/*넘친 화면을 자르거나 스크롤화면으로 변경*/
+    overflow: scroll;/*넘친 화면을 자르거나 스크롤화면으로 변경*/
 }
 #scroll::-webkit-scrollbar {
     width: 6px;
