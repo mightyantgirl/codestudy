@@ -1,3 +1,6 @@
+*{
+    box-sizing: border-box;
+}
 html{
     font-size: 24px;
 }
@@ -46,6 +49,13 @@ hr{
     .label {
         flex:auto;/*flex 아이템 크기를 자동으로 조정**/
   }
+    hr {
+        width: auto;
+    }
+}
+#scroll{
+    height: 150px;
+    overflow: auto;/*넘친 화면을 자르거나 스크롤화면으로 변경*/
 }
 .sub_div{
     padding: 10px;
@@ -56,6 +66,7 @@ hr{
     max-width: 400px;
     padding: 20px;
     margin: 30px auto;
+    border-radius: 5px;
 }
 .main{
     font-size: 0.7rem;
@@ -96,6 +107,9 @@ hr{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+.label:hover{
+    color: #797979;
 }
 .label_style{
     margin: 0;
