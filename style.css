@@ -24,6 +24,7 @@ ul{
     width: auto;
 }
 li{
+    display: flex;
     list-style-type: none;
     padding: 5px;
 }
@@ -35,6 +36,11 @@ p{
     margin-top: 0;
     font-size: 0.5rem;
     color: #cccccc;
+}
+@media(max-width:450px){
+    .label {
+        flex:auto;/*flex 아이템 크기를 자동으로 조정**/
+  }
 }
 .sub_div{
     padding: 10px;
