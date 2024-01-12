@@ -1,3 +1,4 @@
 
-
-<a href="https://mightyantgirl.github.io/codestudy/">Link</a>
+### 📒 code study planer 
+[링크](https://mightyantgirl.github.io/codestudy/)
+  
