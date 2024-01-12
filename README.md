@@ -1,3 +1,3 @@
 
-[### 📒 code study planer](https://mightyantgirl.github.io/codestudy/)
+###[📒 code study planer](https://mightyantgirl.github.io/codestudy/)
   
