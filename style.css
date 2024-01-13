@@ -54,7 +54,7 @@ hr{
     }
 }
 #scroll{
-    height: 180px;
+    height: 200px;
     overflow: scroll;/*넘친 화면을 자르거나 스크롤화면으로 변경*/
 }
 #scroll::-webkit-scrollbar {
@@ -129,6 +129,7 @@ h1, .main, .sub, .sub_title_style{
     margin-top: 10px;
 }
 .sub_title{
+    margin-top: 10px;
     margin-bottom: 10px;
     display: flex;
     flex-direction: column-reverse;
