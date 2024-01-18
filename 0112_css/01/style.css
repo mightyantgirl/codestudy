@@ -1,0 +1,126 @@
+* {
+    box-sizing: border-box;
+  }
+  
+body {
+    font-family: Poppins, 'Noto Sans KR', sans-serif;
+    margin: 0;
+    background-color: rgb(255, 255, 255);
+  }
+.logo {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    padding: 12px 40px;
+  }
+.logo a{
+    font-size: 20px;
+    font-weight: 400;
+    color: #fff;
+  }
+  /*nav 끝 메인 시작*/
+.title, .chainit, .chainify, .nano, .careers, .footer{
+    width: 720px;
+    margin: auto;
+}
+.gray{
+    background-color: #f1f4fa;
+}
+.deep{
+    background-color: #161346;
+}
+.dark{
+    background-color: #120f3f;
+}
+.main {
+    background-image: url(./img/bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.title {
+    padding: 80px 0 280px;
+}
+    /*소제목*/
+.title :nth-child(1){
+    font-size: 20px;
+    font-weight: 500;
+    color: #8287a4;
+}
+    /*메인타이틀*/
+.title :nth-child(2){
+    font-size: 56px;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 12px;
+    line-height: 130%;/*글자 상하여백 초기화*/
+}
+    /*내용*/
+.title :nth-child(3){
+    font-size: 14px;
+    font-weight: 400;
+    color: #8287a4;
+    margin-top: 14px;
+}
+.layout h2{
+    font-size: 36px;
+    font-weight: 700;
+    color: #161346;
+    padding-top: 70px;
+    margin: 0;
+}
+.layout h3{
+    font-size: 32px;
+    font-weight: 500;
+    color: #fff;
+    padding-top: 40px;
+    padding-bottom: 8px;
+    margin: 0;
+}
+.layout img{
+    width: 720px;
+    border-radius: 24px;
+    margin: 42px auto 32px;
+}
+.layout .text{
+    font-size: 16px;
+    font-weight: 500;
+    color: #4c497b;
+}
+.careers{
+    text-align: center;
+}
+.careers p{
+    font-size: 16px;
+    font-weight: 400;
+    color: #4c497b;
+    margin: 0;
+}
+.button-container{
+    text-align: center;
+}
+a.button{
+    display: inline-block;
+    background: #413c91;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    border-radius: 8px;
+    padding: 16px 32px;
+    margin: 32px auto 64px;
+    text-decoration: none;
+}
+a.button.round {
+    border-radius: 9999px;
+}
+a.button:hover{
+    background-color: #504ba8;
+}
+.footer p{
+    margin: 0;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    font-size: 16px;
+    font-weight: 300;
+    color: #fff;
+}
