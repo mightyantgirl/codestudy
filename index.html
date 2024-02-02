@@ -51,8 +51,6 @@
                 <ul class="list">
                     <li><div class="label"><p class="label_style">반응형 웹 퍼블리싱</p>
                     <a href="./css/0123_css/01/index.html" target="_blank">1강 · 미디어쿼리 실습</a></div></li>
-                    <li><div class="label"><p class="label_style"></p>
-                    <a href="./css/0123_css/02/index.html" target="_blank">2강 · 부트스트랩 실습</a></div></li>
                 </ul>
                 <hr><!--구분선-->
                 <ul class="list">
@@ -88,50 +86,20 @@
         <div class="sub_div">
                 <div class="sub_title">
                     <p class="sub_title_style">JavaScript 기초</p>
-                    <p class="sub_title_style_2">2024.01.15 ~ 15</p>
+                    <p class="sub_title_style_2">2024.01.20 ~ 28</p>
                 </div>
-            <div id="scroll" class="sub">
-                <ul class="list">
-                    <li><div class="label"><p class="label_style">css js</p>
-                    <a href="" target="_blank">프로그래밍 시작하기</a></div></li>
-                    <li><div class="label"><p class="label_style">html css js</p>
-                    <a href="" target="_blank">프로그래밍 핵심 개념</a></div></li>
-                </ul>
-            </div>
         </div>
+        <div class="sub_div">
+          <div class="sub_title">
+              <p class="sub_title_style">인터렉티브 JavaScript</p>
+              <p class="sub_title_style_2">2024.01.29 ~ </p>
+          </div>
+  </div>
     </div>
 </main>
 <footer>
-    <input type="button" value="야간모드" onclick="
-        var body = document.querySelector('body');
-        var h1 = document.querySelector('h1');
-        if(this.value === '야간모드'){
-        body.style.backgroundColor = '#1e1e1e';
-        h1.style.color = '#f3f3f3';
-        this.value = '주간모드';
-
-        var menu = document.querySelectorAll('.menu');
-        var i = 0;
-        while(1 < menu.length){
-            menu[i].style.backgroundColor = '#242424';
-            menu[i].style.color = '#fff';
-            i = i + 1;
-        }
-        } else {
-        body.style.backgroundColor = '#f3f3f3';
-        body.style.color = '#000000';
-        h1.style.color = '#3d3d3d';
-        this.value = '야간모드';
-
-        var menu = document.querySelectorAll('.menu');
-        var i = 0;
-        while(1 < menu.length){
-            menu[i].style.backgroundColor = '#fff';
-            menu[i].style.color = '#242424';
-            i = i + 1;
-        }
-        }
-        ">
+  <script src="index.js"></script>
+    <input type="button" value="야간모드" onclick="night_button()">
 </footer>
 </body>
 </html>
