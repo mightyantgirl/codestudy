@@ -3,63 +3,59 @@ let body = document.querySelector('body');
 let h1 = document.querySelector('h1');
 let input = document.querySelector('input');
 
+let Color = {
+    mainColor: function(color){
+      let main = document.querySelectorAll('.main');
+      for (let i = 0; i < main.length; i++){
+        main[i].style.color = color;
+    }
+  },
+    listColor: function(color){
+      let alist = document.querySelectorAll('a');
+      for (let i = 0; i < alist.length; i++){
+        alist[i].style.color = color;
+    }
+  },
+    titleColor: function(color){
+      let subtitle = document.querySelectorAll('.sub_title_style');
+      for (let i = 0; i < subtitle.length; i++){
+        subtitle[i].style.color = color;
+    }
+  },
+    menuColor: function(color1, color2){
+      let menu = document.querySelectorAll('.menu');
+      for (let i = 0; i < menu.length; i++){
+        menu[i].style.backgroundColor = color1;
+        menu[i].style.color = color2;
+    }
+  },
+    button: function(button, color1, color2, value){
+      button.style.backgroundColor = color1;
+      button.style.color = color2;
+      button.value = value;  
+  },
+    body: function(color1, color2){
+      body.style.backgroundColor = color1;
+      h1.style.color = color2;
+  }
+}
+
+
 function night_button(button){
   if(button.value === '야간모드'){
-    body.style.backgroundColor = '#1e1e1e';
-    h1.style.color = '#f3f3f3';
-    button.style.backgroundColor = '#242424';
-    button.style.color = '#a7a7a7';
-    button.value = '주간모드';
-
-
-    let menu = document.querySelectorAll('.menu');
-    for (let i = 0; i < menu.length; i++){
-      menu[i].style.backgroundColor = '#242424';
-      menu[i].style.color = '#f3f3f3';
-    }
-    
-    let main = document.querySelectorAll('.main');
-    for (let i = 0; i < main.length; i++){
-      main[i].style.color = '#f3f3f3';
-    }
-
-    let alist = document.querySelectorAll('a');
-    for (let i = 0; i < alist.length; i++){
-      alist[i].style.color = '#a7a7a7';
-    }
-
-    let subtitle = document.querySelectorAll('.sub_title_style');
-    for (let i = 0; i < subtitle.length; i++){
-      subtitle[i].style.color = '#f3f3f3';
-    }
+    Color.body('#1e1e1e', '#f3f3f3');
+    Color.button(button, '#242424', '#a7a7a7', '주간모드');
+    Color.mainColor('#f3f3f3');
+    Color.listColor('#a7a7a7');
+    Color.titleColor('#f3f3f3');
+    Color.menuColor('#242424', '#f3f3f3');
 
   } else {
-    body.style.backgroundColor = '#f3f3f3';
-    h1.style.color = '#3d3d3d';
-    button.style.backgroundColor = '#e9e9e9';
-    button.style.color = '#b1b1b1';
-    button.value = '야간모드';
-
-
-    let menu = document.querySelectorAll('.menu');
-    for (let i = 0; i < menu.length; i++){
-      menu[i].style.backgroundColor = '#fff';
-      menu[i].style.color = '#242424';
-    }
-
-    let main = document.querySelectorAll('.main');
-    for (let i = 0; i < main.length; i++){
-      main[i].style.color = '#242424';
-    }
-
-    let alist = document.querySelectorAll('a');
-    for (let i = 0; i < alist.length; i++){
-      alist[i].style.color = '#3d3d3d';
-    }
-
-    let subtitle = document.querySelectorAll('.sub_title_style');
-    for (let i = 0; i < subtitle.length; i++){
-      subtitle[i].style.color = '#242424';
-    }
+    Color.body('#f3f3f3', '#3d3d3d');
+    Color.button(button, '#e9e9e9', '#b1b1b1', '야간모드');
+    Color.mainColor('#242424'); 
+    Color.listColor('#3d3d3d');
+    Color.titleColor('#242424');
+    Color.menuColor('#fff', '#242424');
   }
 };
