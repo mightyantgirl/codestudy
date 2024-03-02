@@ -1,61 +1,58 @@
+//new뱃지 반짝이는 에니메이션
+let blink_speed = 800;
+let newTag = document.querySelector(".new-tag"); // 예시: 클래스명이 "new-tag"인 요소를 선택
 
-let body = document.querySelector('body');
-let h1 = document.querySelector('h1');
-let input = document.querySelector('input');
+setInterval(function(){
+  newTag.style.display = newTag.style.display == 'none' ? '' : 'none';
+}, blink_speed);
 
-let Color = {
-    mainColor: function(color){
-      let main = document.querySelectorAll('.main');
-      for (let i = 0; i < main.length; i++){
-        main[i].style.color = color;
-    }
-  },
-    listColor: function(color){
-      let alist = document.querySelectorAll('a');
-      for (let i = 0; i < alist.length; i++){
-        alist[i].style.color = color;
-    }
-  },
-    titleColor: function(color){
-      let subtitle = document.querySelectorAll('.sub_title_style');
-      for (let i = 0; i < subtitle.length; i++){
-        subtitle[i].style.color = color;
-    }
-  },
-    menuColor: function(color1, color2){
-      let menu = document.querySelectorAll('.menu');
-      for (let i = 0; i < menu.length; i++){
-        menu[i].style.backgroundColor = color1;
-        menu[i].style.color = color2;
-    }
-  },
-    button: function(button, color1, color2, value){
-      button.style.backgroundColor = color1;
-      button.style.color = color2;
-      button.value = value;  
-  },
-    body: function(color1, color2){
-      body.style.backgroundColor = color1;
-      h1.style.color = color2;
-  }
+
+//역할/극 배열
+let year = ["2024", "2024","2024-2023","2023","2023-2022","2022","2022","2022","2022-2021",]
+let roles = ["몬티 나바로", "파비앙", "라울", "브라운", "루카스", "김동호", "강우석", "아더", "김옥균"];
+let titles = ["젠틀맨스 가이드", "비아 에어 메일", "오페라의 유령","레드북", "이프/덴", "서편제", "모래시계", "킹아더", "곤 투모로우"];
+
+let links = [
+  { url: "https://twitter.com/swg_archive/status/1759779269356790058/photo/1" },
+  { url: "https://namu.wiki/w/Via%20Air%20Mail" },
+  { url: "https://namu.wiki/w/%EC%98%A4%ED%8E%98%EB%9D%BC%EC%9D%98%20%EC%9C%A0%EB%A0%B9(%EB%AE%A4%EC%A7%80%EC%BB%AC)" },
+  { url: "https://namu.wiki/w/%EB%A0%88%EB%93%9C%EB%B6%81" },
+  { url: "https://namu.wiki/w/%EC%9D%B4%ED%94%84/%EB%8D%B4" },
+  { url: "https://namu.wiki/w/%EC%84%9C%ED%8E%B8%EC%A0%9C(%EB%AE%A4%EC%A7%80%EC%BB%AC)" },
+  { url: "https://namu.wiki/w/%EB%AA%A8%EB%9E%98%EC%8B%9C%EA%B3%84(%EB%AE%A4%EC%A7%80%EC%BB%AC)" },
+  { url: "https://namu.wiki/w/%ED%82%B9%EC%95%84%EB%8D%94" },
+  { url: "https://namu.wiki/w/%EA%B3%A4%20%ED%88%AC%EB%AA%A8%EB%A1%9C%EC%9A%B0" }
+];
+
+// HTML에 삽입할 변수 생성
+let cardsHTML = '';
+
+//문자열 안에서 변수를 사용하려면 ${}사용
+for (let i = 0; i < roles.length; i++) {
+  let cardHTML = `
+    <div id="card${i}" class="card">
+      <div class="content">
+        <h3>${year[i]}</h3>
+        <a class="worktitle">${titles[i]}</a><br>
+        <a class="role">${roles[i]}</a>
+      </div>
+      <div class="button" id="more${i}">
+        more +
+      </div> 
+    </div>
+  `;
+  // 생성된 카드를 cardsHTML에 추가
+  cardsHTML += cardHTML;
 }
 
+document.getElementById('container').innerHTML = cardsHTML;
 
-function night_button(button){
-  if(button.value === '야간모드'){
-    Color.body('#1e1e1e', '#f3f3f3');
-    Color.button(button, '#242424', '#a7a7a7', '주간모드');
-    Color.mainColor('#f3f3f3');
-    Color.listColor('#a7a7a7');
-    Color.titleColor('#f3f3f3');
-    Color.menuColor('#242424', '#f3f3f3');
+//more버튼 링크 적용
+for (let i = 0; i <= roles.length; i++) {
+  let button = document.getElementById(`more${i}`);
+  button.addEventListener('click', function() {
+    let link = links[i].url;
+    window.open(link, '_blank');
+  });
+}
 
-  } else {
-    Color.body('#f3f3f3', '#3d3d3d');
-    Color.button(button, '#e9e9e9', '#b1b1b1', '야간모드');
-    Color.mainColor('#242424'); 
-    Color.listColor('#3d3d3d');
-    Color.titleColor('#242424');
-    Color.menuColor('#fff', '#242424');
-  }
-};
