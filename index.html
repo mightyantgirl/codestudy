@@ -3,113 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:url" content="https://mightyantgirl.github.io/codestudy/">
+    <meta property="og:title" content="code study planer">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="./preview.png">
+    <meta property="og:description" content="의젓한 개자이너를 향하여...">
+    <title>coding study planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    <title>Songmuwiki</title>
 </head>
 <body>
-  <header>
-    <div class="logo">Songmuwiki 📂</div>
-    <div class="tap">
-      <div class="nav">
-        <a class="dot"></a>
-        <a class="dot"></a>
-        <a class="dot"></a>
-      </div>
-      <div class="nav">profile</div><a>x</a>
-      <div class="nav">musical
-        <div id="badge">
-          1
+<header>
+    <h1>coding study planner<span style="color: rgb(219, 86, 14);">.</span></h1>
+    <p id="subtitle">의젓한 개자이너를 향하여...</p>
+</header>
+<main>
+    <div class="menu">
+        <div class="notion">
+            <div id="nav_title">📋 notion</div>
+                <div class="tag">
+                    <a id="tag_link" href="https://scythe-guanaco-113.notion.site/01-HTML-9dd3714b2d3c495e98d07d8b9f1c24db?pvs=4" target="_blank"><span id="html" class="nav">html</a></span>
+                    <a id="tag_link" href="https://scythe-guanaco-113.notion.site/02-CSS-00843eb220f44c69ad5d4da8920df7cf?pvs=4" target="_blank"><span id="css" class="nav">css</a></span>
+                    <a id="tag_link" href="https://scythe-guanaco-113.notion.site/03-Jscript-9fe8f7033d5848d5924f71fb0aea7f0f?pvs=4" target="_blank"><span id="js" class="nav">js</a></span>
+                </div>
         </div>
-      </div><a></a>
-      <div class="nav">drama</div><a>X</a>
-      <div class="nav">album</div><a>X</a>
-      <div id="highlight"></div>
     </div>
-  </header>
-  <main>
-    <div class="worklist">
-      <div id="address">
-        www.songmuwiki.com
-      </div>
-      <section class="cards" id="container">
-      </section>
-      <div class="new-tag">new !</div>
-        <!-- <div id="card0" class="card">
-          <div class="content">
-            <h3>2024</h3>
-            <a class="worktitle">젠틀맨스 가이드</a><br>
-            <a class="role">몬티 나바로 역</a>
-          </div>
-          <div class="button">
-            more +
-          </div> 
+    <div class="menu">
+        <span class="main">project</span>
+        <div class="sub_div">
+            <div class="sub">
+                <a id="songmuwiki" href="./project/mbti/index.html" target="_blank"> 🎨 MBTI별 좋아하는 컬러 </a><br>
+                <a id="songmuwiki" href="./project/songmuwikii/index.html" target="_blank"> 📂 송무위키 </a>
+            </div>
         </div>
-        <div id="card1" class="card">
-          
-          <div class="content">
-          <h3>2024</h3>
-          <a class="worktitle">비아 에어 메일</a><br>
-          <a class="role">파비앙 역</a>
-          </div> 
-          <div class="button">
-            more +
-          </div> 
-        </div>
-        <div id="card2" class="card">
-          <div class="content">
-            <h3>2023~2024</h3>
-            <a class="worktitle">오페라의 유령</a><br>
-            <a class="role">라울 역</a>
-          </div>
-          <div class="button">
-            more +
-          </div> 
-        </div>
-        <div id="card3" class="card">
-          <div class="content">
-            <h3>2023</h3>
-            <a class="worktitle">레드북</a><br>
-            <a class="role">라울 역</a>
-          </div>
-          <div class="button">
-            more +
-          </div> 
-        </div>
-        <div id="card4" class="card">
-          <div class="content">
-            <h3>2023</h3>
-            <a class="worktitle">이프/덴</a><br>
-            <a class="role">라울 역</a>
-          </div>
-          <div class="button">
-            more +
-          </div> 
-        </div>
-        <div id="card5" class="card">
-          <div class="content">
-            <h3>2023</h3>
-            <a class="worktitle">서편제</a><br>
-            <a class="role">라울 역</a>
-          </div>
-          <div class="button">
-            more +
-          </div> 
-        </div>
-        <div id="card6" class="card">
-          <div class="content">
-            <h3>2023</h3>
-            <a class="worktitle">모래시계</a><br>
-            <a class="role">라울 역</a>
-        </div>
-        <div class="button">
-          more +
-        </div> 
-      </div>
-      </section> -->
     </div>
-  </main>
-  <script src="index.js">
-  </script>
+    <div class="menu">
+        <span class="main">code it</span>
+        <div class="sub_div">
+                <div class="sub_title">
+                    <p class="sub_title_style">html/css로 웹 사이트 만들기</p>
+                    <p class="sub_title_style_2">2024.01.08 ~ 23</p>
+                </div>
+            <div id="scroll" class="sub">
+                <ul class="list">
+                    <li><div class="label"><p class="label_style">반응형 웹 퍼블리싱</p>
+                    <a href="./css/0123_css/01/index.html" target="_blank">1강 · 미디어쿼리 실습</a></div></li>
+                </ul>
+                <hr><!--구분선-->
+                <ul class="list">
+                    <li><div class="label"><p class="label_style">css 레이아웃</p>
+                    <a href="./css/0114_css/01/index.html" target="_blank">1강 · position 실습</a></div></li>
+                    <li><div class="label"><p class="label_style"></p>
+                    <a href="./css/0114_css/02/index.html" target="_blank">2강 · flexbox 실습</a></div></li>
+                    <li><div class="label"><p class="label_style"></p>
+                    <a href="./css/0118_css/01/index.html" target="_blank">3강 · 레이아웃 실습</a></div></li>
+                </ul>
+                <hr><!--구분선-->
+                <ul class="list">
+                    <li><div class="label"><p class="label_style">css 핵심 개념</p>
+                    <a href="./css/0111_css/0111_css_05/index.html" target="_blank">3강 · 박스모델 실습</a></div></li>
+                    <li><div class="label"><p class="label_style"></p>
+                    <a href="./css/0111_css/0111_css_06/index.html" target="_blank">4강 · display 화면구성 실습</a></div></li>
+                    <li><div class="label"><p class="label_style"></p>
+                    <a href="./css/0112_css/01/index.html" target="_blank">5강 · 선택자 실습</a></div></li>
+                    <li><div class="label"><p class="label_style"></p>
+                    <a href="./css/0113_css/01/index.html" target="_blank">6강 · 스타일 계산 실습</a></div></li>
+                </ul>
+                <hr><!--구분선-->
+                <ul class="list" reversed>
+                    <li><div class="label"><p class="label_style">자주 쓰는 css 속성</p>
+                    <a href="./css/0111_css/0111_css_01/index.html" target="_blank">1강 · id,class</a></div></li>
+                    <li><div class="label"><p class="label_style"></p>
+                    <a href="./css/0111_css/0111_css_03/index.html"target="_blank">2강 · 배경 이미지,그라디언트</a></div></li>
+                    <li><div class="label"><p class="label_style"></p>
+                    <a href="./css/0111_css/0111_css_04/index.html"target="_blank">2강 · 그림자,불투명도</a></div></li>
+                </ul>
+            </div>
+        </div>
+        <div class="sub_div">
+                <div class="sub_title">
+                    <p>텅...</p>
+                    <p class="sub_title_style">JavaScript 기초</p>
+                    <p class="sub_title_style_2">2024.01.20 ~ 30</p>
+                </div>
+        </div>
+        <div class="sub_div">
+          <div class="sub_title">
+              <p>텅...</p>
+              <p class="sub_title_style">인터렉티브 JavaScript</p>
+              <p class="sub_title_style_2">2024.02.02 ~ </p>
+          </div>
+  </div>
+    </div>
+</main>
+<footer>
+  <script src="index.js"></script>
+    <input type="button" value="야간모드" onclick="night_button(this)">
+</footer>
 </body>
-</html> 
+</html>
+

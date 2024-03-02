@@ -1,319 +1,178 @@
-html {
-    font-size: 14px;
-    background-color: #f3f3f3;
-    font-family: Pretendard;
+*{
+    box-sizing: border-box;
+}
+html{
+    font-size: 24px;
+}
+body{
+    background: #f3f3f3;
+    font-family: Poppins, 'Noto Sans KR', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    margin: 40px;
+}
+a{
+    color: inherit;/*링크 색상 제거*/
+}
+span{
+    width: auto;
+    margin-bottom: 10px;
+}
+ul{
+    padding: 0;
+    margin: 0;
+    margin-top: 5px;
+    width: auto;
+}
+li{
+    display: flex;
+    list-style-type: none;
+    padding: 5px;
+}
+h1{
+    margin-bottom: 0;
+    margin-top: 30px;
+}
+p{
+    font-size: 0.5rem;
+    color: #cccccc;
+}
+hr{
+    margin: 10px auto 0 auto;
+    margin-top: 10px;
+    border: 0.5px solid #e2e2e2;
+    border-style: dashed;
+    width: 300px;
+}
+@media(max-width:450px){
+    .label {
+        flex:auto;/*flex 아이템 크기를 자동으로 조정**/
+  }
+    hr {
+        width: auto;
+    }
+}
+#scroll{
+    height: 200px;
+    overflow: scroll;/*넘친 화면을 자르거나 스크롤화면으로 변경*/
+}
+#scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+#scroll::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+#scroll::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: #e9e9e9;
+  }
+/*노션 링크버튼*/
+#tag_link{
+    text-decoration: none;
+}
+#html{
+    background-color: rgb(219, 86, 14);
+}
+#css{
+    background-color: rgb(228, 106, 165);
+}
+#js{
+    background-color: rgb(53, 83, 218);
+}
+#subtitle{
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+.nav{
+    width: auto;
+    padding: 3px 8px;
+    border-radius: 12px;
+    color: #ffffff;
+}
+.nav:hover{
+    opacity: 0.8;
+}
+.notion{
+    display: flex;
+    align-items: stretch;
+    justify-content: space-around;
+}
+/**/
+.sub_div{
+    padding: 10px;
+}
+.menu{
+    background: #ffffff;
+    font-size: 0.5rem;
+    max-width: 400px;
+    padding: 20px 18px;
+    margin: 15px auto;
+    border-radius: 5px;
+}
+.sub_title_style_2, .list{
+    font-size: 0.5rem;
+}
+.sub_title, .sub_title_style{
+    font-size: 0.6rem;
+}
+h1, .main, .sub, .sub_title_style{
+    color: #3d3d3d;
+}
+.main{
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+.sub{
+    margin-top: 10px;
+}
+.sub_title{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+}
+.sub_title_style{
+    font-weight: 600;
+    margin: 0;
+}
+.sub_title_style_2{
+    font-weight: 400;
+    color: #a7a7a7;
+    margin: 0;
+}
+/*예제실습 목록*/
+.list{
+    color: #525252;
+}
+.label{
+    width: 300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.label:hover{
+    color: #797979;
+}
+.label_style{
+    margin: 0;
+    font-size: 0.4rem;
+    font-weight: 600;
+    color: rgb(219, 86, 14);
 }
 
-body {
-  margin: 0 40px;
-}
-
-header {
-  position: relative;
-}
-
-
-.logo {
-  margin: 20px 20px 10px;
-  font-size: 100px;
-  font-weight: 800;
-  position: relative;
-  z-index: 1;
-}
-
-.tap {
-  margin: 20px;
-  position: relative;
-  bottom: -25px;
-  background-color: rgb(233, 233, 233);
-  padding: 20px 10px 20px 30px;
-  border-radius: 20px 20px 0 0;
-  z-index: -1;
-}
-
-.nav {
-  font-size: 18px;
-  font-weight: 400;
-  position: relative;
-  display: inline;
-  color: #383838;
-}
-
-.nav .dot{
-  background-color: rgb(215, 215, 215);
-  padding: 0px 10px;
-  border-radius: 999px;
-  margin-right: 8px;
-  position: relative;
-}
-
-.tap > a {
-  margin-right: 20px;
-  color: #b9b9b9;
-  position: relative;
-  right: 15px;
-}
-
-.nav:nth-child(4){
-  background-color: rgb(255, 255, 255);
-  border-radius: 20px;
-  padding: 6px 40px 30px 20px;
-}
-
-.nav:nth-child(2){
-  background-color: rgb(233, 233, 233);
-  border-radius: 20px;
-  padding: 6px 30px 30px 20px;
-  z-index: -1;
-  margin-left: 20px;
-}
-
-.nav:nth-child(6){
-  background-color: rgb(233, 233, 233);
-  border-radius: 20px;
-  padding: 6px 30px 30px 20px;
-  z-index: -1;
-}
-
-.nav:nth-child(8){
-  background-color: rgb(233, 233, 233);
-  border-radius: 20px;
-  padding: 6px 30px 30px 20px;
-  z-index: -1;
-}
-
-#badge {
-  background-color: #eb3939;
-  display: inline;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 300;
-  border-radius: 30px;
-  padding: 0 8px 0 8px;
-  align-items: center;
-  position:absolute;
-  bottom: 28px;
-  right: 12px;
-}
-
-
-/* #highlight {
-  background-color: #19ff75;
-  padding: 10px 20px;
-  width: 260px;
-  position: absolute;
-  top: 100px;
-  left: 60px;
-} */
-
-.worklist{
-  margin: 10px 20px;
-  padding: 20px 40px 30px;
-  border-radius: 0px 0px 20px 20px;
-  background-color: rgb(255, 255, 255);
-  overflow: overlay; /*스크롤바투명*/
-  z-index: 0;
-  position: relative;
-}
-
-#address {
-  background-color: #ededed;
-  padding: 10px 10px 10px 40px;
-  margin-bottom: 20px;
-  border-radius: 20px;
-  margin-left: 80px;
-  z-index: 0;
-}
-
-.worklist::-webkit-scrollbar {
-  width: 1vw;
-}
-
-.cards {
-  display: flex;
-  gap: 20px;
-  position: relative;
-}
-
-.content {
-  white-space: nowrap;
-  position: relative;
-  top: 350px;
-  right: 90px;
-  width: 100px;
-}
-
-.cards .worktitle {
-  font-size: 20px;
-}
-
-.cards .role {
-  color: #ffffffb6;
-}
-
-.cards > * {
-  background-color: #fff;
-  color: #fff;
-  border-radius: 20px;
-  height: 500px;
-  padding: 0 140px;
-  display: flex;
-  align-items: lefe;
-  flex-direction: column;
-}
-
-.button {
-  font-size: 18px;
-  border: 1px solid #fff;
-  padding: 8px 10px 10px 26px;
-  width: 70px;
-  border-radius: 30px;
-  position: relative;
-  left: 90px;
-  top: 300px;
-  visibility: hidden;/*요소 숨기기*/
-}
-
-.new-tag {
-  background-color: #eb3939;
-  color: #fff;
-  width: max-content;
-  padding: 13px;
-  position: absolute;
-  top: 100px;
-  left: 340px;
-  border-radius: 14px;
-
-}
-
-#card0 {
-  background-image: linear-gradient(
-    0deg,
-    #000000da 10%,
-    rgba(0, 0, 0, 0.1) 80%
-  ),
-  url(img/musical/monti.jpeg);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-#card1 {
-  background-image: linear-gradient(
-    0deg,
-    #000000da 10%,
-    rgba(0, 0, 0, 0.1) 80%
-  ),
-  url(img/musical/pavi.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-#card2 {
-  background-image: linear-gradient(
-    0deg,
-    #000000da 10%,
-    rgba(0, 0, 0, 0.1) 80%
-  ),
-  url(img/musical/raoul.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-#card3 {
-  background-image: linear-gradient(
-    0deg,
-    #000000da 10%,
-    rgba(0, 0, 0, 0.1) 80%
-  ),
-  url(img/musical/brown.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-#card4 {
-  background-image: linear-gradient(
-    0deg,
-    #000000da 10%,
-    rgba(0, 0, 0, 0.1) 80%
-  ),
-  url(img/musical/lucas.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-#card5 {
-  background-image: linear-gradient(
-    0deg,
-    #000000da 10%,
-    rgba(0, 0, 0, 0.1) 80%
-  ),
-  url(img/musical/dongho.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-#card6 {
-  background-image: linear-gradient(
-    0deg,
-    #000000da 10%,
-    rgba(0, 0, 0, 0.1) 80%
-  ),
-  url(img/musical/wooseok.jpeg);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-#card7 {
-  background-image: linear-gradient(
-    0deg,
-    #000000da 10%,
-    rgba(0, 0, 0, 0.1) 80%
-  ),
-  url(img/musical/arthur.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-#card8 {
-  background-image: linear-gradient(
-    0deg,
-    #000000da 10%,
-    rgba(0, 0, 0, 0.1) 80%
-  ),
-  url(img/musical/ok.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-
-#card0:hover .button,
-#card1:hover .button,
-#card2:hover .button,
-#card3:hover .button,
-#card4:hover .button,
-#card5:hover .button,
-#card6:hover .button,
-#card7:hover .button,
-#card8:hover .button,
-#card9:hover .button{
-    font-size: 18px;
-    border: 1px solid #fff;
-    padding: 8px 10px 10px 26px;
-    width: 70px;
-    border-radius: 14px;
-    position: relative;
-    left: 110px;
-    top: 300px;
-    visibility: visible;/*보이기*/
-}
-
-.button:hover {
-  font-size: 18px;
-  background-color: #fff;
-  color: #000;
-  padding: 8px 10px 10px 26px;
-  width: 70px;
-  position: relative;
-  left: 100px;
-  top: 300px;
+/*푸터*/
+input[type=button]{
+    width: auto;
+    height: 30px;
+    font-size: 0.5rem;
+    background-color: #e9e9e9;
+    color: #b1b1b1;
+    border: none;
+    border-radius: 10px;
 }
