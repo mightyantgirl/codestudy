@@ -12,6 +12,10 @@ header {
   position: relative;
 }
 
+main {
+  position: relative;
+}
+
 
 .logo {
   margin: 20px 20px 10px;
@@ -39,12 +43,24 @@ header {
   color: #383838;
 }
 
-.nav .dot{
+.nav .dot {
   background-color: rgb(215, 215, 215);
   padding: 0px 10px;
   border-radius: 999px;
   margin-right: 8px;
   position: relative;
+}
+
+#red {
+  background-color: rgb(239, 73, 73);
+}
+
+#yellow {
+  background-color: rgb(247, 201, 84);
+}
+
+#green {
+  background-color: rgb(116, 221, 60);
 }
 
 .tap > a {
@@ -108,25 +124,37 @@ header {
 
 .worklist{
   margin: 10px 20px;
-  padding: 20px 40px 30px;
-  border-radius: 0px 0px 20px 20px;
+  padding: 60px 40px 10px;
   background-color: rgb(255, 255, 255);
-  overflow: overlay; /*스크롤바투명*/
+  overflow: scroll;
   z-index: 0;
   position: relative;
 }
 
+
 #address {
   background-color: #ededed;
   padding: 10px 10px 10px 40px;
-  margin-bottom: 20px;
+  margin: 12px 0 0 0;
+  margin-bottom: 10px;
   border-radius: 20px;
-  margin-left: 80px;
-  z-index: 0;
+  margin-left: 150px;
+  z-index: 1;
+  display: inline;
+  position: absolute;
+  left: 40px;
+  right: 100px;
 }
 
-.worklist::-webkit-scrollbar {
-  width: 1vw;
+::-webkit-scrollbar {
+  display: block;
+}
+::-webkit-scrollbar-track, ::-webkit-scrollbar-button {
+  display: none;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #ededed;
+  border-radius: 90px;
 }
 
 .cards {
