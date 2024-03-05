@@ -1,0 +1,347 @@
+html {
+    font-size: 14px;
+    background-color: #f3f3f3;
+    font-family: Pretendard;
+}
+
+body {
+  margin: 0 40px;
+}
+
+header {
+  position: relative;
+}
+
+main {
+  position: relative;
+}
+
+
+.logo {
+  margin: 20px 20px 10px;
+  font-size: 100px;
+  font-weight: 800;
+  position: relative;
+  z-index: 1;
+}
+
+.tap {
+  margin: 20px;
+  position: relative;
+  bottom: -25px;
+  background-color: rgb(233, 233, 233);
+  padding: 20px 10px 20px 30px;
+  border-radius: 20px 20px 0 0;
+  z-index: -1;
+}
+
+.nav {
+  font-size: 18px;
+  font-weight: 400;
+  position: relative;
+  display: inline;
+  color: #383838;
+}
+
+.nav .dot {
+  background-color: rgb(215, 215, 215);
+  padding: 0px 10px;
+  border-radius: 999px;
+  margin-right: 8px;
+  position: relative;
+}
+
+#red {
+  background-color: rgb(239, 73, 73);
+}
+
+#yellow {
+  background-color: rgb(247, 201, 84);
+}
+
+#green {
+  background-color: rgb(116, 221, 60);
+}
+
+.tap > a {
+  margin-right: 20px;
+  color: #b9b9b9;
+  position: relative;
+  right: 15px;
+}
+
+.nav:nth-child(4){
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  padding: 6px 40px 30px 20px;
+}
+
+.nav:nth-child(2){
+  background-color: rgb(233, 233, 233);
+  border-radius: 20px;
+  padding: 6px 30px 30px 20px;
+  z-index: -1;
+  margin-left: 20px;
+}
+
+.nav:nth-child(6){
+  background-color: rgb(233, 233, 233);
+  border-radius: 20px;
+  padding: 6px 30px 30px 20px;
+  z-index: -1;
+}
+
+.nav:nth-child(8){
+  background-color: rgb(233, 233, 233);
+  border-radius: 20px;
+  padding: 6px 30px 30px 20px;
+  z-index: -1;
+}
+
+#badge {
+  background-color: #eb3939;
+  display: inline;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 300;
+  border-radius: 30px;
+  padding: 0 8px 0 8px;
+  align-items: center;
+  position:absolute;
+  bottom: 28px;
+  right: 12px;
+}
+
+
+/* #highlight {
+  background-color: #19ff75;
+  padding: 10px 20px;
+  width: 260px;
+  position: absolute;
+  top: 100px;
+  left: 60px;
+} */
+
+.worklist{
+  margin: 10px 20px;
+  padding: 60px 40px 10px;
+  background-color: rgb(255, 255, 255);
+  overflow: scroll;
+  z-index: 0;
+  position: relative;
+}
+
+
+#address {
+  background-color: #ededed;
+  padding: 10px 10px 10px 40px;
+  margin: 12px 0 0 0;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  margin-left: 150px;
+  z-index: 1;
+  display: inline;
+  position: absolute;
+  left: 40px;
+  right: 100px;
+}
+
+::-webkit-scrollbar {
+  display: block;
+}
+::-webkit-scrollbar-track, ::-webkit-scrollbar-button {
+  display: none;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #ededed;
+  border-radius: 90px;
+}
+
+.cards {
+  display: flex;
+  gap: 20px;
+  position: relative;
+}
+
+.content {
+  white-space: nowrap;
+  position: relative;
+  top: 350px;
+  right: 90px;
+  width: 100px;
+}
+
+.cards .worktitle {
+  font-size: 20px;
+}
+
+.cards .role {
+  color: #ffffffb6;
+}
+
+.cards > * {
+  background-color: #fff;
+  color: #fff;
+  border-radius: 20px;
+  height: 500px;
+  padding: 0 140px;
+  display: flex;
+  align-items: lefe;
+  flex-direction: column;
+}
+
+.button {
+  font-size: 18px;
+  border: 1px solid #fff;
+  padding: 8px 10px 10px 26px;
+  width: 70px;
+  border-radius: 30px;
+  position: relative;
+  left: 90px;
+  top: 300px;
+  visibility: hidden;/*요소 숨기기*/
+}
+
+.new-tag {
+  background-color: #eb3939;
+  color: #fff;
+  width: max-content;
+  padding: 13px;
+  position: absolute;
+  top: 100px;
+  left: 340px;
+  border-radius: 14px;
+
+}
+
+#card0 {
+  background-image: linear-gradient(
+    0deg,
+    #000000da 10%,
+    rgba(0, 0, 0, 0.1) 80%
+  ),
+  url(img/musical/monti.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#card1 {
+  background-image: linear-gradient(
+    0deg,
+    #000000da 10%,
+    rgba(0, 0, 0, 0.1) 80%
+  ),
+  url(img/musical/pavi.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#card2 {
+  background-image: linear-gradient(
+    0deg,
+    #000000da 10%,
+    rgba(0, 0, 0, 0.1) 80%
+  ),
+  url(img/musical/raoul.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#card3 {
+  background-image: linear-gradient(
+    0deg,
+    #000000da 10%,
+    rgba(0, 0, 0, 0.1) 80%
+  ),
+  url(img/musical/brown.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#card4 {
+  background-image: linear-gradient(
+    0deg,
+    #000000da 10%,
+    rgba(0, 0, 0, 0.1) 80%
+  ),
+  url(img/musical/lucas.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#card5 {
+  background-image: linear-gradient(
+    0deg,
+    #000000da 10%,
+    rgba(0, 0, 0, 0.1) 80%
+  ),
+  url(img/musical/dongho.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#card6 {
+  background-image: linear-gradient(
+    0deg,
+    #000000da 10%,
+    rgba(0, 0, 0, 0.1) 80%
+  ),
+  url(img/musical/wooseok.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#card7 {
+  background-image: linear-gradient(
+    0deg,
+    #000000da 10%,
+    rgba(0, 0, 0, 0.1) 80%
+  ),
+  url(img/musical/arthur.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#card8 {
+  background-image: linear-gradient(
+    0deg,
+    #000000da 10%,
+    rgba(0, 0, 0, 0.1) 80%
+  ),
+  url(img/musical/ok.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+#card0:hover .button,
+#card1:hover .button,
+#card2:hover .button,
+#card3:hover .button,
+#card4:hover .button,
+#card5:hover .button,
+#card6:hover .button,
+#card7:hover .button,
+#card8:hover .button,
+#card9:hover .button{
+    font-size: 18px;
+    border: 1px solid #fff;
+    padding: 8px 10px 10px 26px;
+    width: 70px;
+    border-radius: 14px;
+    position: relative;
+    left: 110px;
+    top: 300px;
+    visibility: visible;/*보이기*/
+}
+
+.button:hover {
+  font-size: 18px;
+  background-color: #fff;
+  color: #000;
+  padding: 8px 10px 10px 26px;
+  width: 70px;
+  position: relative;
+  left: 100px;
+  top: 300px;
+}
