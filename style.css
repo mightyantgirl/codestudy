@@ -82,6 +82,9 @@ hr{
 #js{
     background-color: rgb(53, 83, 218);
 }
+#vue{
+    background-color: #11a745;
+}
 #subtitle{
     margin-top: 0;
     margin-bottom: 30px;
