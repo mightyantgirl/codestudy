@@ -4,10 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <title>Songmuwiki</title>
 </head>
 <body>
+  <div class="modal">
+    <div class="memo_modal_bg">
+      <div class="memo_modal">
+        <div>추가해보고시푼 기능 📝</div>
+        <ul>
+          <li>필모 연도별 필터기능<br>
+            1. 디폴트 카드 안보이게<br>
+            2. 조건문 (else if?사용하면 될듯?)<br>
+              각 필터에 조건이 걸리면 해당 배열 출력<br>
+            3. 모두보기 -> 디폴트 카드 다시 보이게<br>
+          </li>
+        </ul>
+        <div>추가 중/추가한 기능 📝</div>
+        <ul>
+          <li>
+            필모 연도 드롭다운 (반복문 활용)
+          </li>
+          <li>메모용 모달기능 추가</li>
+        </ul>
+        <button class="modal_close_btn">닫기</button>
+      </div>
+    </div>
+  </div>
+  <button class="modal_open_btn">그냥 메모란 📝</button>
   <header>
     <div class="logo">Songmuwiki 📂</div>
     <div class="tap">
@@ -28,16 +53,19 @@
     </div>
   </header>
   <main>
-    <div id="address">
-      www.songmuwiki.com
+    <div id="address" class="dropdown">
+      <button id="drop" class="drop_btn">몇년도의 송필모를 보여드릴깝쇼?</button>
+      <div class="drop_content" id="filter">
+        <!-- js-->
+      </div>
     </div>
     <div class="worklist">
       <section class="cards" id="container">
+        <!-- js -->
       </section>
       <div class="new-tag">new !</div>
     </div>
   </main>
-  <script src="index.js">
-  </script>
+  <script src="index.js"></script>
 </body>
-</html> 
+</html>

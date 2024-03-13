@@ -1,3 +1,12 @@
+//메모 모달 끄고켜기
+document.getElementsByClassName('modal_open_btn')[0].addEventListener('click', function(){
+  document.getElementsByClassName('modal')[0].classList.toggle('show');
+});
+
+document.getElementsByClassName('modal_close_btn')[0].addEventListener('click', function(){
+  document.getElementsByClassName('modal')[0].classList.toggle('show');
+});
+
 //new뱃지 반짝이는 에니메이션
 let blink_speed = 800;
 let newTag = document.querySelector(".new-tag"); // 예시: 클래스명이 "new-tag"인 요소를 선택
@@ -11,6 +20,32 @@ setInterval(function(){
 let year = ["2024", "2024","2024-2023","2023","2023-2022","2022","2022","2022","2022-2021",]
 let roles = ["몬티 나바로", "파비앙", "라울", "브라운", "루카스", "김동호", "강우석", "아더", "김옥균"];
 let titles = ["젠틀맨스 가이드", "비아 에어 메일", "오페라의 유령","레드북", "이프/덴", "서편제", "모래시계", "킹아더", "곤 투모로우"];
+
+//극 필터 배열
+let filterYear = ["2018", "2019", "2020", "2021", "2022", "2023", "2024"]
+
+//극 필터 반복문
+function dropdown() {
+  let filterHTML = '';
+  for (let i = 0; i < filterYear.length; i++) {
+    filterHTML += `
+    <div id="filter${i}" class="filter_year">
+    ${filterYear[i]}</div>
+    `;
+  }
+  document.getElementById('filter').innerHTML = filterHTML;
+}
+
+let menu = document.querySelector('.dropdown'); // 메뉴 전체 선택
+
+menu.addEventListener('click', function(){
+  dropdown(); // 드롭다운 표시
+});
+
+menu.addEventListener('mouseleave', function(){
+  document.getElementById('filter').innerHTML = ''; // 필터를 비움
+});
+
 
 let links = [
   { url: "https://twitter.com/swg_archive/status/1759779269356790058/photo/1" },
@@ -48,11 +83,10 @@ for (let i = 0; i < roles.length; i++) {
 document.getElementById('container').innerHTML = cardsHTML;
 
 //more버튼 링크 적용
-for (let i = 0; i <= roles.length; i++) {
+for (let i = 0; i < roles.length; i++) {
   let button = document.getElementById(`more${i}`);
   button.addEventListener('click', function() {
     let link = links[i].url;
     window.open(link, '_blank');
   });
 }
-
