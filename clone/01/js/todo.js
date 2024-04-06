@@ -5,7 +5,7 @@ const toDoList = document.getElementById("todo-list");
 const TODOS_KEY = "todos";
 
 //* 배열에 저장되었던 값을 로컬스토리지에 저장*/
-const toDos = [];
+let toDos = [];
 
 function saveToDos() {
   localStorage.setItem(TODOS_KEY, JSON.stringify(toDos));
@@ -20,16 +20,21 @@ function deletToDo(e){
   const li = e.target.parentElement;
   //(클릭이벤트가 발생한 요소의)부모태그를 이벤트 타겟으로 지정
   li.remove();
-  //지우긔.
+  toDos = toDos.filter(toDo => toDo.id !== parseInt(li.id));
+  //filter를 활용해서 내가 선택한 요소의 id가 li의 아이디와 다르다면 출력하게 함. (즉, 내가 선택한 요소와 같다면 false로 보여지지 않음 = 삭제)
+  saveToDos();
+  //filter로 바뀐 값을 다시 로컬스토리지에 저장
 }
 
 //* 인풋에 입력한 내용을 li태그로 생성하여 출력하는 기능 */
 function paintToDo(newTodo){
   const li = document.createElement("li");
   //li태그를 생성하는 변수선언
+  li.id = newTodo.id;
+  //id태그에 id명을 newTodo의 id로 전송
   const span = document.createElement("span");
   //span태그를 생성하는 변수 선언
-  span.innerText = newTodo;
+  span.innerText = newTodo.text;
   //span태그 안에 newTodo저장된 인풋값을 전송
   const button = document.createElement("button");
   //button태그를 생성하는 변수 선언
@@ -53,9 +58,14 @@ function handleToDoSubmit(e) {
   //submit의 초기기능 초기화
   const newTodo = toDoInput.value;
   //입력 된 인풋의 값을 변수에 저장
-  toDos.push(newTodo);
+  const newTodoObj = {
+    text: newTodo,
+    id: Date.now(),
+  };
+  //입력 된 인풋 값을 object형태로 저장 각 값에 아이디를 부여하기 위해
+  toDos.push(newTodoObj);
   //변수에 저장된 인풋 값을 toDos란 배열에 저장
-  paintToDo(newTodo);
+  paintToDo(newTodoObj);
   //변수에 임시로 저장했던 인풋의 값을 함수의 파라미터로 보냄
   toDoInput.value = "";
   //인풋 값 초기화
@@ -74,6 +84,7 @@ if(savedTodos !== null){
   //forEach는 따로 반복문없이 array의 item 하나씩 funcion에 반복해 넣을 수 있게하는 기능.
   //화살표함수를 활용해서 따로 함수선언하지 않고 한 줄로 표현 가능
   //forEach와 화살표함수 다시 한 번 따로 개념학습필요...
+  toDos = parsedToDos;
   parsedToDos.forEach(paintToDo);
 };
 
