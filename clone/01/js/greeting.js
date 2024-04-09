@@ -1,7 +1,9 @@
 
 const loginForm = document.querySelector("#login-form");
+const loginGreeting = document.querySelector('#login-greeting');
 const loginInput = document.querySelector("#login-form input");
 const greeting = document.querySelector("#greeting");
+const todoForm = document.querySelector('#todo-form');
 
 const HIDDEN_CLASSNAME = "hidden";
 const USERNAME_KEY = "username";
@@ -12,15 +14,7 @@ const USERNAME_KEY = "username";
 
 //**로그인 form
 function onLoginSubmit(event) {
-    // let username = loginInput.value;
-    // if(username === ''){
-    //     //''는 문자형의 초기값
-    //     alert("영문과 숫자로 이루어진 아이디를 입력해주세요!");
-    // }else if(username.length > 15){
-    //     alert(`${username}은 너무 깁니다. 15자 이하의 아이디를 입력해주세요.`)
-    // }else {
-    //     alert(`어서오세요 ${username}님!`);
-    // }
+
     event.preventDefault();
     //submit의 기본행동(서버에 정보를 보냄)을 막음!
     let username = loginInput.value;
@@ -33,6 +27,9 @@ function onLoginSubmit(event) {
     //greeting 변수 안에 인삿말 text추가
     greeting.classList.remove(HIDDEN_CLASSNAME);
     //숨겨져있던 greeting css스타일인 class제거하여 화면에 표시
+    todoForm.classList.remove(HIDDEN_CLASSNAME);
+    loginGreeting.classList.add(HIDDEN_CLASSNAME);
+    //greeting 메세지에 class hidden추가하여 화면에서 지우기
 };
 
 
@@ -52,4 +49,7 @@ if(saveUsername === null){
     //저장되었던 username을 불러오고
     greeting.classList.remove(HIDDEN_CLASSNAME);
     //hidden 삭제해서 숨겼던 h1을 다시 보여줄거임.
+    loginGreeting.classList.add(HIDDEN_CLASSNAME);
+    //greeting 메세지에 class hidden추가하여 화면에서 지우기
+    todoForm.classList.remove(HIDDEN_CLASSNAME);
 }
