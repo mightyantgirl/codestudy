@@ -59,3 +59,4 @@ function night_button(button){
     Color.menuColor('#fff', '#242424');
   }
 };
+
