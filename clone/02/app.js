@@ -1,3 +1,10 @@
+const fileInput = document.getElementById("file");
+const modeBtn = document.getElementById("mode-btn");
+const destroyBtn = document.getElementById("destroy-btn");
+const EraserBtn = document.getElementById("eraser-btn");
+const colorOptions = Array.from(
+  document.getElementsByClassName("color-option"));
+  //얘넨 배열로 생성되지 않았음! array.from을 사용하면 htmlcollection을 배열로 바꿔줌 오신기하다
 const canvas = document.querySelector("canvas");
 const lineWidth = document.querySelector('#line-width');
 const color = document.querySelector('#color');
@@ -58,9 +65,10 @@ ctx.lineWidth = lineWidth.value;
 // ctx.fill();
 
 let isPainting = false;
+let isFilling = false;
 
 function onMove(e){
-    if(isPainting = true){
+    if(isPainting === true){
         ctx.lineTo(e.offsetX, e.offsetY);
         ctx.stroke();
         return;
@@ -90,10 +98,69 @@ function onColorChange(e){
     //초기화
 }
 
+function onColorClick(e){
+  const colorValue = e.target.dataset.color
+  ctx.strokeStyle = colorValue;
+  ctx.fillStyle = colorValue;
+  color.value = colorValue
+}
+
+function onModeClick(e){
+  if(isFilling === true){
+    isFilling = false;
+    modeBtn.innerText = "Fill";
+  }else {
+    isFilling = true;
+    modeBtn.innerText = "Draw";
+  }
+}
+//변수의 상태에 따라 버튼의 텍스트를 바꿔줌
+
+function onCanvasClick(){
+  if(isFilling){
+    ctx.fillRect(0,0,800,800);
+  }
+}
+//변수가 참일경우 캔버스에 fillRect로 채움
+
+function onDestroyClick(){
+  ctx.fillStyle = "white";
+  ctx.fillRect(0,0,800,800);
+}
+//디스트로이 버튼을 클릭하는 경우 fillRect로 흰색을 칠해서 초기화
+
+function onEraserClick(){
+  ctx.strokeStyle = "white";
+  isFilling = false;
+  modeBtn.innerText = "Fill";
+}
+
+function onFileChange(e){
+  const file = e.target.files[0];
+  //첨부된 첫번쨰 파일을 변수로 저장
+  const url = URL.createObjectURL(file);
+  //파일의 유알엘을 변수로 저장
+  const image = new Image();
+  image.src = url;
+  image.onload = function(){
+    ctx.drawImage(image, 0,0,800,800);
+  };
+  //이미지 불러오기 어떻게? 캔버스 안에
+}
+
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", onMouseDown);
 canvas.addEventListener("mouseup", cancelPainting);   
+canvas.addEventListener("click", onCanvasClick);
 canvas.addEventListener("mouseleave", cancelPainting);
 
 lineWidth.addEventListener("change", onLineWidthChange);
 color.addEventListener("change", onColorChange);
+
+
+colorOptions.forEach(color => color.addEventListener("click", onColorClick));
+
+modeBtn.addEventListener("click", onModeClick);
+destroyBtn.addEventListener("click", onDestroyClick);
+EraserBtn.addEventListener("click", onEraserClick)
+fileInput.addEventListener("change", onFileChange);
