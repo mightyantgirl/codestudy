@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="changebox">
+        <div class="ex-box">
+            <div class="dropdown">
+                <button class="dropbtn" id="from-button">USD</button>
+                <div class="dropdown-content" id="from-currency-list">
+                    <a href="#">USD</a>
+                    <a href="#">KRW</a>
+                    <a href="#">JPY</a>
+                </div>
+            </div>
+            <input type="number" class="input-area" id="from-input" onkeyup="convert('from')" placeholder="환전할 값을 기입해주세요."/>
+            <div class="exchange-unit" id="from-exchange">달러</div>
+        </div>
+        <h1>=</h1>
+        <div class="ex-box">
+            <div class="dropdown">
+                <button class="dropbtn" id="to-button">KRW</button>
+                <div class="dropdown-content" id="to-currency-list">
+                    <a href="#">USD</a>
+                    <a href="#">KRW</a>
+                    <a href="#">JPY</a>
+                </div>
+            </div>
+            <input type="number" class="input-area" id="to-input" onkeyup="convert('to')" placeholder="환전 된 값이 표시됩니다."/>
+            <div class="exchange-unit" id="to-exchange">원</div>
+        </div>
+    </div>
+
+    <button id="reset">초기화</button>
+    <script src="main.js"></script>
+</body>
+
+</html>

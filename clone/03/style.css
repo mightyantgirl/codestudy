@@ -1,0 +1,68 @@
+/* #changebox h1{
+    text-align: center;
+} */
+
+.ex-box{
+    border:  1px solid black;
+    width: 400px;
+}
+
+.dropbtn {
+  background-color: #5154ec;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  /* 부모인 ex-box의 넓이의 100% */
+}
+
+#from-button {
+    background-color: #5154ec;
+}
+
+#to-button {
+    background-color: #ec5160;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+} 
+
+.dropdown-content {
+  display: none;
+  /* 평소엔 안보이게 설정 */
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  width: 100%;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  /* 마우스오버 할 시에 디스플레이를 블록으로 */
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+.input-area {
+    width: 100%;
+    box-sizing: border-box;
+    /* 넘치는 부분이 고쳐짐 */
+}
