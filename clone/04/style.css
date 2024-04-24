@@ -99,6 +99,18 @@ body {
     z-index: 5;
     /* display: none; */
 }
+
+@media (max-width: 375px) {
+    .outermost-circle {
+        width: 230px;
+        height: 230px;
+    }
+    .circle-container {
+        width: 250px;
+        height: 250px;
+    }
+}
+
 /* 타이머 */
 
 .timer-container {
@@ -106,6 +118,7 @@ body {
     height: 180px;
     z-index: 6;
 }
+
 
 .timer {
     width: 300px;
@@ -116,8 +129,21 @@ body {
     align-items: center;
 }
 
+
+@media (max-width: 375px) {
+    .timer-container {
+        width: 160px;
+        height: 100px;
+    }
+    .timer {
+        width: 160px;
+        height: 100px;
+    }
+
+}
+
 .timer div {
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 100;
     color: #272728;
     width: 60px;
@@ -127,6 +153,13 @@ body {
     align-items: center;
     margin: 0 10px 0 10px;
 }
+
+@media (min-width: 376px){
+    .timer div {
+        font-size: 50px;
+    }
+} 
+
 
 .timer .colon {
     background-color: transparent;
