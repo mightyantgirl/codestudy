@@ -4,16 +4,42 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    letter-spacing: -2.5%;
 }
 
 html {
-    font-family: font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;;
 }
 
+body {
+    width: 375px;
+    height: 812px;
+    background-color: #fff
+    margin: 0;
+}
+
+/* 탑 */
+.top-bar {
+    width: 100%;
+    z-index: 10;
+    position: absolute;
+    text-align: center;
+    margin: 60px 0 40px 0;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+
+/* 타이머 */
 .container{
     width: 100%;
     height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 60px 0 0 0;
+    background-color: #fff;
 }
 
 .center {
@@ -24,15 +50,15 @@ html {
 
 .main-container {
     width: 100%;
-    height: 80vh;
+    height: 60vh;
     background-color: #fff;
 }
 /* 진행률 타이머 */
 
 .circle-container {
-    width: 400px;
-    height: 400px;
-    background-color: #ddd;
+    width: 340px;
+    height: 340px;
+    background-color: #ebebeb;
     border-radius: 50%;
     position: absolute;
     overflow: hidden;
@@ -50,24 +76,24 @@ html {
 }
 
 .semicircle:nth-child(1) {
-    background-color: rgb(92, 217, 96);
+    background-color: #3a3add;
     z-index: 2;
 }
 
 .semicircle:nth-child(2) {
-    background-color: rgba(92, 217, 96);
+    background-color: #3a3add;
     z-index: 3;
 }
 
 .semicircle:nth-child(3) {
-    background-color: #ddd;
+    background-color: #ebebeb;
     z-index: 4;
     /* display: none; */
 }
 
 .outermost-circle {
-    width: 380px;
-    height: 380px;
+    width: 320px;
+    height: 320px;
     background-color:#fff;
     border-radius: 50%;
     z-index: 5;
@@ -75,33 +101,14 @@ html {
 }
 /* 타이머 */
 
-/* 테스트 */
-/* .main-container:hover .semicircle:nth-child(1) {
-    transform: rotate(180deg);
-    transition: 1s linear;
-}
-
-.main-container:hover .semicircle:nth-child(2) {
-    transform: rotate(360deg);
-    transition: 2s linear;
-}
-
-.main-container:hover .semicircle:nth-child(3) {
-    opacity: 0;
-    transition: opacity 0s 1s;
-} */
-
-
-/* 타이머 */
-
 .timer-container {
-    width: 330px;
-    height: 200px;
+    width: 300px;
+    height: 180px;
     z-index: 6;
 }
 
 .timer {
-    width: 400px;
+    width: 300px;
     height: 100px;
     z-index: 7;
     display: flex;
@@ -110,9 +117,10 @@ html {
 }
 
 .timer div {
-    font-size: 40px;
+    font-size: 50px;
     font-weight: 100;
-    width: 80px;
+    color: #272728;
+    width: 60px;
     height: 80px;
     display: flex;
     justify-content: center;
@@ -132,4 +140,39 @@ html {
 /* 버튼 */
 .button {
     width: 100%;
+    height: 60px;
 }
+
+.btn {
+    font-size: 16px;
+    color: #707070;
+    border-radius: 20px;
+}
+
+#start-btn {
+    width: 120px;
+    height: 60px;
+    border-style: none;
+    margin-right: 30px;
+}
+#rest-btn {
+    width: 120px;
+    height: 60px;
+    border-style: none;
+}
+
+.btn:hover {
+    background-color: #272728;
+    color:  #fff;
+}
+
+/* 인트로 버튼 */
+/* 
+.intro-btn {
+    background-color: #3a3add;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    z-index: 8;
+    position: ;
+} */
