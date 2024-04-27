@@ -1,0 +1,8 @@
+.login-area {
+  display: block;
+  /* none으로 바꿔주면 안보임 */
+}
+
+.intro {
+  font-size: 30px;
+}
