@@ -35,3 +35,54 @@ if (saveUserName === null) {
   intro.innerHTML = `다시 만나서 반가워요 ${saveUserName}님!`;
   loginArea.style.display = 'none';
 }
+
+// 타이머
+let timerElement = document.getElementById('timer');
+let startBtn = document.getElementById('startBtn');
+let pauseBtn = document.getElementById('pauseBtn');
+let resetBtn = document.getElementById('resetBtn');
+let timerInterval;
+let timerValue = localStorage.getItem('countdownTimer') || 0;
+
+function startTimer() {
+    timerInterval = setInterval(updateTimer, 1000);
+}
+
+function pauseTimer() {
+    clearInterval(timerInterval);
+    localStorage.setItem('countdownTimer', timerValue);
+}
+
+function resetTimer() {
+    clearInterval(timerInterval);
+    timerValue = 0;
+    localStorage.removeItem('countdownTimer');
+    updateTimer();
+}
+
+function updateTimer() {
+    timerValue--;
+    if (timerValue < 0) {
+        clearInterval(timerInterval);
+        timerValue = 0;
+        localStorage.removeItem('countdownTimer');
+        return;
+    }
+
+    let hours = Math.floor(timerValue / 3600);
+    let minutes = Math.floor((timerValue % 3600) / 60);
+    let seconds = timerValue % 60;
+
+    let formattedTime = 
+        (hours < 10 ? "0" : "") + hours + ":" +
+        (minutes < 10 ? "0" : "") + minutes + ":" +
+        (seconds < 10 ? "0" : "") + seconds;
+
+    timerElement.textContent = formattedTime;
+}
+
+startBtn.addEventListener('click', startTimer);
+pauseBtn.addEventListener('click', pauseTimer);
+resetBtn.addEventListener('click', resetTimer);
+
+updateTimer();

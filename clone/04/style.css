@@ -192,6 +192,12 @@ body {
     width: 120px;
     height: 60px;
     border-style: none;
+    margin-right: 30px;
+}
+#pause-btn {
+  width: 120px;
+  height: 60px;
+  border-style: none;
 }
 
 .btn:hover {

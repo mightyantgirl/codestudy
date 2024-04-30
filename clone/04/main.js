@@ -2,6 +2,8 @@ const semicircle = document.querySelectorAll('.semicircle');
 const timer = document.querySelector('.timer');
 const startBtn = document.getElementById("start-btn");
 const restBtn = document.getElementById("rest-btn");
+const pauseBtn = document.getElementById("pause-btn");
+let timerValue = localStorage.getItem('pauseTimer') || 0;
 
 //input
 const hr = 0;
@@ -64,6 +66,39 @@ function restTimer() {
     semicircle[1].style.display = 'block';
     timer.style.color = '';
 }
+
+//일시정지 버튼
+//일시 정지 버튼
+// 일시정지 버튼
+pauseBtn.addEventListener("click", pauseTimer);
+
+function pauseTimer() {
+    if (pauseBtn.textContent === '일시 정지') {
+        clearInterval(timerLoop);
+        timerValue = futureTime - Date.now();
+        localStorage.setItem('pauseTimer', timerValue);
+        pauseBtn.textContent = '다시 시작';
+    } else {
+        startTimer(timerValue);
+        pauseBtn.textContent = '일시 정지';
+    }
+}
+
+// 일시정지 버튼
+pauseBtn.addEventListener("click", pauseTimer);
+
+function pauseTimer() {
+    if (pauseBtn.textContent === '일시 정지') {
+        clearInterval(timerLoop);
+        timerValue = futureTime - Date.now();
+        localStorage.setItem('pauseTimer', timerValue);
+        pauseBtn.textContent = '다시 시작';
+    } else {
+
+        pauseBtn.textContent = '일시 정지';
+    }
+}
+
 
 
 //진행률 , 타이머 (5분 휴식)
