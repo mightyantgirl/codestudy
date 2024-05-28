@@ -44,6 +44,11 @@ let cardLink = [
     linkTitle : "📂 송무위키",
   },
   {
+    id: "project",
+    link : "./project/pomodoro/index.html",
+    linkTitle : "⏰ 뽀모도로",
+  },
+  {
     id: "nomadcoders",
     link : "./clone/01/index.html",
     linkTitle : " 1️⃣ 바닐라js로 크롬앱 만들기 ",
