@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #F2F3F8;
+  color: #18191E;
+  font-family: Roboto, 'Noto Sans KR', sans-serif;
+  font-size: 17px;
+}
+
+a {
+  color: #18191E;
+}
+
+input {
+  border-radius: 6px;
+  border: 1.3px solid #DADADA;
+  font-size: 16px;
+  padding: 10px;
+  width: 500px;
+}
+
+input::placeholder {
+  color: #DADADA;
+}
+
+button{
+  display: inline-block;
+  background-color: blue;
+  border-radius: 6px;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 10px;
+  text-align: center;
+  display: block;
+  margin: 24px 0;
+  width: 500px;
+}
+
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  background-color: #fff;
+  width: 680px;
+  height: 750px;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+
+
