@@ -15,14 +15,25 @@ a {
 
 input {
   border-radius: 6px;
-  border: 1.3px solid #DADADA;
+  border: 1.5px solid #DADADA;
   font-size: 16px;
   padding: 10px;
   width: 500px;
+  height: 50px;
+  transition: border-color 0.3s ease;
 }
 
 input::placeholder {
   color: #DADADA;
+}
+
+input:hover {
+  border-color: rgb(190, 190, 190);
+}
+
+input:focus {
+  border-color: blue;
+  outline: none;
 }
 
 button{
@@ -37,12 +48,39 @@ button{
   display: block;
   margin: 24px 0;
   width: 500px;
+  height: 50px;
 }
 
+label {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#register-form {
+  width: 100%;
+  max-width: 500px;
+}
+
+#password {
+  margin-bottom: 10px;
+}
+
+#email-error-message {
+  color: red;
+  text-align: center;
+  display: none; /* 기본적으로 숨김 처리 */
+}
+
+#password-error-message {
+  color: red;
+  text-align: center;
+  display: none; /* 기본적으로 숨김 처리 */
+}
 
 .field {
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
 }
 
 .container {
@@ -51,7 +89,12 @@ button{
   height: 750px;
   margin: 0 auto;
   border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 
 
 
