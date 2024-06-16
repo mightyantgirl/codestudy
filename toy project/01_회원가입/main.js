@@ -2,7 +2,7 @@
 const EMAIL_REGEXP = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 const NAME_REGEXP = /^[가-힣]{2,15}$/;
 const PASSWORD_MIN_LEN = 10;
-//각 인풋 조건
+
 
 const nameField = document.querySelector('#name-field');
 const nameErrorMessage = document.querySelector('#name-error-message');
@@ -16,6 +16,7 @@ const registerForm = document.querySelector('#register-form');
 registerForm.addEventListener('input', handleFormInput);
 //회원가입 시 스토리지 저장 이벤트 리스너
 registerForm.addEventListener('submit', handleFormSubmit);
+
 
 function handleFormInput(e) {
   const input = e.target;
@@ -46,7 +47,7 @@ function handleFormInput(e) {
       password.length >= PASSWORD_MIN_LEN &&
       //패스워드 글자 수가 저장한 정규표현식의 글자 수와 같거나 큰지
       passwordRepeat.length >= PASSWORD_MIN_LEN;
-    //위와 동일
+      //위와 동일
     const validatePassword = isPasswordEqual && isPasswordlengthValid;
 
     passwordField.classList.toggle('invalid', !validatePassword);

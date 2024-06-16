@@ -65,6 +65,7 @@ label {
   margin-bottom: 10px;
 }
 
+
 .invalid {
   color: red;
 }
@@ -72,12 +73,6 @@ label {
 .invalid > input {
   border-color: red;
   color: red;
-}
-
-.error-message {
-  display: none; 
-  font-size: 12px;
-  text-align: right;
 }
 
 .invalid .error-message {
@@ -97,6 +92,12 @@ label {
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
+}
+
+.field > div {
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: right;
 }
 
 .container {
