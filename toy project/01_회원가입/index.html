@@ -10,29 +10,24 @@
   <title>Form Validator</title>
 </head>
 <body>
-  <h2 class="register-title">
-    회원가입</h2>
   <div class="container">
     <form id="register-form" name="register">
       <div id="name-field" class="field">
         <label for="name">이름</label>
         <input id="name" name="name" type="name" placeholder="이름을 입력하세요.">
+        <div id="name-error-message"></div>
       </div>
       <div id="email-field" class="field">
         <label for="email">이메일</label>
         <input id="email" name="email" type="email" placeholder="이메일을 입력하세요.">
-        <div id="email-error-message">올바르지 않은 이메일입니다.</div>
+        <div id="email-error-message"></div>
       </div>
       <div>
         <div id="password-field" class="field">
         <label for="name">비밀번호</label>
         <input id="password" name="password" type="password" placeholder="비밀번호">
-        <input name="password" type="password" placeholder="비밀번호 확인">
-        <div id="password-error-message">
-          "비밀번호가 서로 다릅니다."
-          <br>
-          "비밀번호는 10자 이상으로 해 주세요."
-        </div>
+        <input name="password-repeat" type="password" placeholder="비밀번호 확인">
+        <div id="password-error-message"></div>
         </div>
       </div>
       <button type="submit">회원가입</button>

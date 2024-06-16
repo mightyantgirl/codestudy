@@ -65,16 +65,32 @@ label {
   margin-bottom: 10px;
 }
 
-#email-error-message {
+.invalid {
   color: red;
-  text-align: center;
-  display: none; /* 기본적으로 숨김 처리 */
 }
 
-#password-error-message {
+.invalid > input {
+  border-color: red;
   color: red;
-  text-align: center;
-  display: none; /* 기본적으로 숨김 처리 */
+}
+
+.error-message {
+  display: none; 
+  font-size: 12px;
+  text-align: right;
+}
+
+.invalid .error-message {
+  display: block;
+}
+
+.success {
+  color: rgb(37, 199, 40);
+}
+
+.success > input {
+  border-color: rgb(37, 199, 40);
+  color: rgb(37, 199, 40);
 }
 
 .field {
@@ -88,6 +104,7 @@ label {
   width: 680px;
   height: 750px;
   margin: 0 auto;
+  margin-top: 80px;
   border-radius: 20px;
   padding: 20px;
   display: flex;
