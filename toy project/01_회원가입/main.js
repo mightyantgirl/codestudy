@@ -2,6 +2,7 @@
 const EMAIL_REGEXP = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 const NAME_REGEXP = /^[가-힣]{2,15}$/;
 const PASSWORD_MIN_LEN = 10;
+//각 인풋 조건
 
 const nameField = document.querySelector('#name-field');
 const nameErrorMessage = document.querySelector('#name-error-message');
@@ -13,6 +14,8 @@ const registerForm = document.querySelector('#register-form');
 
 //회원가입 폼 input 이벤트리스너 함수 호출
 registerForm.addEventListener('input', handleFormInput);
+//회원가입 시 스토리지 저장 이벤트 리스너
+registerForm.addEventListener('submit', handleFormSubmit);
 
 function handleFormInput(e) {
   const input = e.target;
@@ -75,3 +78,30 @@ function handleFormInput(e) {
     //오류메세지 노출
   }
 };
+
+function handleFormSubmit(e) {
+  e.preventDefault(); // submit시 자동 새로고침을 막음
+
+  const name = registerForm['name'].value.trim();
+  const email = registerForm['email'].value.trim();
+  const password = registerForm['password'].value.trim();
+  const passwordRepeat = registerForm['password-repeat'].value.trim();
+
+  const validateForm =
+  NAME_REGEXP.test(name) &&
+  EMAIL_REGEXP.test(email) &&
+  password.length >= PASSWORD_MIN_LEN &&
+  password === passwordRepeat
+
+  if(validateForm) {
+    //유효성검사를 통과한 경우 각 입력한 value를 스토리지에 저장
+    localStorage.setItem('name', name);
+    localStorage.setItem('email', email);
+    localStorage.setItem('password', password);
+
+    alert('회원가입이 완료되었습니다.');
+  } else {
+    //아닌 경우 얼럿창
+    alert('입력한 정보를 확인하세요.');
+  }
+}
