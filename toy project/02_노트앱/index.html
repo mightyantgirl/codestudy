@@ -11,19 +11,22 @@
 </head>
 <body>
     <main class="main-container">
-        <h2>Note App</h2>
-        <h3>take a notes and forget.</h3>
-        <button class="new-btn">새로쓰기</button>
-        <section class="note-list"></section>
+        <h2>Notes App</h2>
+        <h3>take a notes and never forget.</h3>
+        <section id="note-list"></section>
         <!--  -->
-        <section class="note-create">
+        <section id="note-new-create">
             <div class="note-box">
-                <input type="text" name="" id="title" placeholder="title" class="note-title"/>
-                <textarea name="" id="content" cols="30" rows="12" placeholder="take a something" class="note-content"></textarea>
+                <input type="text" name="" id="note-box-create__title" class="title" placeholder="Title" /><br>
+                <textarea name="" id="note-box-create__content" class="content" cols="30" rows="12" placeholder="Take a something" ></textarea>
             </div>
         </section>
+        <div class="note__btn">
+          <button class="btn" id="note__btn--remove">< Back</button>
+          <button class="btn" id="note__btn--save">Save</button>
+        </div>
     </main>
-
+    <button class="new-btn">새로쓰기</button>
     <script src="main.js"></script>
 </body>
 </html>
