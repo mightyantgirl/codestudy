@@ -51,7 +51,12 @@ let cardLink = [
   {
     id: "project",
     link : "./toy project/01_회원가입/index.html",
-    linkTitle : "📝 유효성 검사 회원가입",
+    linkTitle : "📒 유효성 검사 회원가입",
+  },
+  {
+    id: "project",
+    link : "./toy project/02_노트앱/index.html",
+    linkTitle : "📋 간단 노트앱",
   },
   {
     id: "nomadcoders",
