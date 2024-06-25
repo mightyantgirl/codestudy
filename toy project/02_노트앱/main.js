@@ -1,38 +1,53 @@
-const newNote = document.querySelector('#note-new-create');
-const saveBtn = document.querySelector('#note__btn--save');
+//서치 창 메뉴 생성 및 필터링 기능
+document.addEventListener('DOMContentLoaded', function () {
+  const dropdownContainer = document.getElementById('search__filter');
 
-//로컬스토리지에 memos라는 키를 생성함
-let memos = JSON.parse(localStorage.getItem('memos'));
-memos = memos ?? [];
+  // 드롭다운 메뉴 생성
+  const dropdown = document.createElement('div');
+  dropdown.className = 'dropdown';
 
-//메모 save시 실행되는 이벤트리스너
-saveBtn.addEventListener('click', function(){
-  let newMemo = {};
-  let memoTitle = newNote.querySelector('#note-box-create__title').value;
-  let memoContent = newNote.querySelector('#note-box-create__content').value;
-  let now = new Date();
+  // 드롭다운 버튼 생성
+  const dropdownBtn = document.createElement('button');
+  dropdownBtn.className = 'dropdown-btn';
+  dropdownBtn.textContent = 'Sort by';
+  dropdown.appendChild(dropdownBtn);
 
-  //로컬스토리지에 id값이 없다면 키를 생성하고 0부터 설정
-  let id = JSON.parse(localStorage.getItem('id'));
-  id = id ?? 0;
-  
-  //newMemo객체에 id,제목,내용,날짜 저장
-  newMemo.id = id;
-  newMemo.title = memoTitle;
-  newMemo.content = memoContent;
-  newMemo.date = `${now.getFullYear()}.${now.getMonth() + 1}.${now.getDate()}`;
-  memos.push(newMemo);
+  //드롭다운 내용 메뉴 생성
+  const dropdownContent = document.createElement('div');
+  dropdownContent.className = 'dropdown-content';
 
-  //저장할말을 물어보는 confirm
-  const result = confirm('메모를 저장하시겠어용?');
-  if(result){
-    //예를 선택한 경우의 처리
-    localStorage.setItem('memos', JSON.stringify(memos));
-    localStorage.setItem('id', JSON.stringify(++id));
-    newNote.querySelector('#note-box-create__title').value = null; // 제목 필드 초기화
-    newNote.querySelector('#note-box-create__content').value = null; // 내용 필드 초기화
-  } else {
-    // 아니오를 선택한 경우의 처리
-    // 별다른 처리를 하지 않으면 작성 중이던 창으로 돌아갑니다
-  }
+  const links = ['Latest', 'Earliest', 'Alphabetical'];
+  links.forEach(text => {
+    const a = document.createElement('a');
+    a.href = '#';
+    a.textContent = text;
+    dropdownContent.appendChild(a);
+
+    // 링크 클릭 시 버튼 텍스트 변경
+    a.addEventListener('click', function (event) {
+      event.preventDefault(); // 링크의 기본 동작 막기
+      dropdownBtn.textContent = text;
+      dropdownContent.classList.remove('show');
+    });
+  });
+
+  dropdown.appendChild(dropdownContent);
+  dropdownContainer.appendChild(dropdown);
+
+  // 드롭다운 버튼 클릭 이벤트
+  dropdownBtn.addEventListener('click', function () {
+    dropdownContent.classList.toggle('show');
+  });
+
+  // 드롭다운 메뉴 외부 클릭 시 메뉴를 숨김
+  window.addEventListener('click', function (event) {
+    if (!event.target.matches('.dropdown-btn')) {
+      if (dropdownContent.classList.contains('show')) {
+        dropdownContent.classList.remove('show');
+      }
+    }
+  });
 });
+
+
+//노트 리스트 화면
