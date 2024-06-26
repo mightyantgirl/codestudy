@@ -1,6 +1,8 @@
 const newNote = document.querySelector('#note-new-create');
 const search = document.querySelector('#search');
 const mainNote = document.querySelector('#note-list');
+
+const noteBtn = document.querySelector('.note__btn');
 const saveBtn = document.querySelector('#note__btn--save');
 const newNoteBtn = document.querySelector('#new-btn');
 const removeBtn = document.querySelector('#note__btn--remove');
@@ -41,7 +43,9 @@ function showMainNote() {
   mainNote.style.display = 'block'; // 메모 리스트 화면 보이기
   newNoteBtn.style.display = 'block'; // 새로 쓰기 버튼 보이기
   search.style.display = 'flex';
+
 }
+
 
 // 새로 쓰기 화면 보이기 함수
 function showNewNote() {
@@ -50,6 +54,7 @@ function showNewNote() {
   newNoteBtn.style.display = 'none';// 새로 쓰기 버튼 숨기기
   search.style.display = 'none';
 }
+
 
 //3. 저장하기 버튼을 클릭할때 실행되는 이벤트 리스너
 saveBtn.addEventListener('click', function () {
@@ -122,6 +127,7 @@ function setMemo() {
     // note-container div 생성
     let noteContainer = document.createElement('div');
     noteContainer.classList.add('note-container');
+    noteContainer.dataset.id = memos[i].id;
 
     // 날짜 div 생성
     let date = document.createElement('div');
@@ -143,6 +149,12 @@ function setMemo() {
     content.id = 'note-content';
     content.textContent = memos[i].content;
 
+    // 수정버튼 div 생성
+    let modify = document.createElement('div');
+    modify.id = 'note-modify';
+    modify.textContent = 'modify';
+    modify.style.display = 'none'; // 초기 상태는 숨김
+
     // 왼쪽 부분 생성 및 추가
     let leftDiv = document.createElement('div');
     leftDiv.classList.add('note-container_left');
@@ -154,6 +166,7 @@ function setMemo() {
     rightDiv.classList.add('note-container_right');
     rightDiv.appendChild(day);
     rightDiv.appendChild(month);
+    rightDiv.appendChild(modify);
 
     // noteContainer에 왼쪽, 오른쪽 부분 추가
     noteContainer.appendChild(leftDiv);
@@ -161,5 +174,59 @@ function setMemo() {
 
     // note_list에 noteContainer 추가
     noteList.appendChild(noteContainer);
+
+    // 수정버튼 자바스크립트를 사용한 Hover 기능 추가
+    noteContainer.addEventListener('mouseenter', function () {
+      modify.style.display = 'block';
+    });
+
+    noteContainer.addEventListener('mouseleave', function () {
+      modify.style.display = 'none';
+    });
+
+    // 수정 버튼 이벤트 핸들러 등록
+    modify.addEventListener('click', function (e) {
+      const memoId = e.target.closest('.note-container').dataset.id;
+      editMemo(memoId);
+      showNewNote();
+    });
   }
 }
+
+// 수정 버튼 클릭 이벤트 리스너 설정 (이벤트 위임 사용)
+//modifyBtn는 페이지가 처음 로드될 때는 존재하지 않기 때문에 이벤트리스너가 적용되지 않음.
+//부모요소에 이벤트요소를 추가하고, 이벤트가 발생할 때 이벤트의 target을 이용해 요소를 확인
+document.querySelector('#note-list').addEventListener('click', function (e) {
+  if (e.target && e.target.id === 'note-modify') {
+    const memoId = e.target.closest('.note-container').dataset.id;
+    editMemo(memoId);
+    showNewNote();
+    registerModifyButtonEvents();
+  }
+});
+
+// 수정 버튼 클릭 시 기존 작성된 내용 불러오기 
+//파인드인덱스, 파인드는 챗지피티도움으로 하긴했는데 이해가 어렵군아...
+function editMemo(id) {
+  const index = memos.findIndex(m => m.id == id);
+  if (index !== -1) {
+    const memo = memos[index];
+    document.querySelector('#note-box-create__title').value = memo.title;
+    document.querySelector('#note-box-create__content').value = memo.content;
+    showNewNote();
+    memos.splice(index, 1);
+  }
+};
+
+function registerModifyButtonEvents() {
+  const modifyButtons = document.querySelectorAll('#note-list .note-modify');
+  modifyButtons.forEach(button => {
+    button.addEventListener('click', function (e) {
+      const memoId = e.target.closest('.note-container').dataset.id;
+      editMemo(memoId);
+      showNewNote();
+    });
+  });
+}
+
+// 삭제버튼 클릭 시 현재 불러와진 내용 삭제하기

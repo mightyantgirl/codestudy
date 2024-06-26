@@ -198,6 +198,7 @@ h3 {
   justify-content: space-between;
 }
 
+
 #note__btn--remove {
   background-color: #ECECEC;
   color: #D4D4D4;
@@ -214,6 +215,16 @@ h3 {
 
 #note__btn--save:hover {
   background-color: #395cd9;
+}
+
+#note__btn--delete {
+  background-color: #dc3838;
+  color: #ffffff;
+  margin-left: 10px;
+}
+
+#note__btn--delete:hover {
+  background-color: #ca2828;
 }
 
 
@@ -233,25 +244,37 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  position: relative;
 }
 
 #note-content {
-  font-size: 18px;
+  font-size: 16px;
   margin-top: 5px;
 }
 
 #note-dayofweek {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
 }
 
 #note-month {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   color: #D4D4D4;
 }
 
 #note-date {
-  font-size: 50px;
+  font-size: 40px;
   font-weight: 800;
+}
+
+#note-modify {
+  background-color: #f6f6f6;
+  color: #bebebe;
+  position: absolute;
+  bottom: 0px;
+  padding: 7px 7px;
+  font-size: 12px;
+  border-radius: 5px;
+  
 }
