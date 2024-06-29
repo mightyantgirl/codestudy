@@ -1,11 +1,13 @@
 const newNote = document.querySelector('#note-new-create');
 const search = document.querySelector('#search');
 const mainNote = document.querySelector('#note-list');
+const noteBox = document.querySelector('.note-box');
 
 const noteBtn = document.querySelector('.note__btn');
 const saveBtn = document.querySelector('#note__btn--save');
 const newNoteBtn = document.querySelector('#new-btn');
 const removeBtn = document.querySelector('#note__btn--remove');
+const deleteBtn = document.querySelector('#note__btn--delete');
 
 //로컬스토리지에 memos라는 키를 생성함
 let memos = JSON.parse(localStorage.getItem('memos'));
@@ -53,6 +55,13 @@ function showNewNote() {
   mainNote.style.display = 'none';// 메모 리스트 화면 숨기기
   newNoteBtn.style.display = 'none';// 새로 쓰기 버튼 숨기기
   search.style.display = 'none';
+
+  let memoContent = newNote.querySelector('#note-box-create__content').value;
+  if (memoContent == "") {
+    deleteBtn.style.display = 'none';
+  } else {
+    deleteBtn.style.display = 'flexbox';
+  }
 }
 
 
@@ -124,6 +133,9 @@ function setMemo() {
 
   // 메모 리스트 업데이트
   for (let i = memos.length - 1; i >= 0; i--) {
+    //수정화면 콘텐츠 박스에 dataset id 부여
+    noteBox.dataset.id = memos[i].id;
+
     // note-container div 생성
     let noteContainer = document.createElement('div');
     noteContainer.classList.add('note-container');
@@ -147,6 +159,7 @@ function setMemo() {
     // 내용 div 생성
     let content = document.createElement('div');
     content.id = 'note-content';
+    content.classList.add('note-content-preview');
     content.textContent = memos[i].content;
 
     // 수정버튼 div 생성
@@ -213,16 +226,16 @@ function editMemo(id) {
     const memo = memos[index];
     document.querySelector('#note-box-create__title').value = memo.title;
     document.querySelector('#note-box-create__content').value = memo.content;
-    showNewNote();
     memos.splice(index, 1);
+    showNewNote();
   }
-};
+}
 
 function registerModifyButtonEvents() {
   const modifyButtons = document.querySelectorAll('#note-list .note-modify');
   modifyButtons.forEach(button => {
     button.addEventListener('click', function (e) {
-      const memoId = e.target.closest('.note-container').dataset.id;
+      const memoId = e.target.closest('.note-Box').dataset.id;
       editMemo(memoId);
       showNewNote();
     });
@@ -230,3 +243,50 @@ function registerModifyButtonEvents() {
 }
 
 // 삭제버튼 클릭 시 현재 불러와진 내용 삭제하기
+deleteBtn.addEventListener('click', function (e) {
+  //삭제할 메모의 id를 가져옴
+  const memoId = noteBox.dataset.id; //  현제 활성화 된 메모의 id를 얻음
+  deleteMemo(memoId);
+});
+
+
+// 메모 삭제 함수
+function deleteMemo(id) {
+  const index = memos.findIndex(m => m.id == id);
+  if(index !== -1){
+    //삭제 여부 확인
+    const result = confirm('작성한 노트를 삭제하시겠어요? 삭제한 후에는 작업을 되돌릴 수 없습니다.');
+    if(result) {
+      memos.splice(index, 1); // memos배열에서 제거
+      localStorage.setItem('memos', JSON.stringify(memos)); // 로컬스토리지 업데이트
+
+      showMainNote(); // 메모 리스트 화면으로 돌아가기
+      setMemo(); // 초기화
+      //초기화를 나중에 해야 제대로 작동함... 하 ㄱ-
+    }
+  }
+};
+
+
+
+// 각 노트 컨테이너 클릭 시 노트 전체 내용 보여주기 
+const noteContainers = document.querySelectorAll('.note-container');
+// 모든 .note-container 요소를 선택
+//셀렉터 올을 사용해야 모든 요소가 선택되는걸 잊지마...
+
+// 각 .note-container 요소에 이벤트 리스너를 추가
+noteContainers.forEach(function(noteContainer) {
+  noteContainer.addEventListener('click', function() {
+    const noteContainerLeft = noteContainer.querySelector('.note-container_left');
+    const content = noteContainerLeft.querySelector(':nth-child(2)');
+    if (content.classList.contains('note-content-preview')) {
+      content.classList.remove('note-content-preview');
+    } else {
+      content.classList.add('note-content-preview');
+    }
+  });
+});
+
+
+//하 삭제버튼 어디감? 찾아야됨
+//왜 자꾸 새버튼 누르는데 수정으로 연결돼 ? 이것도 고쳐야돼 염병
