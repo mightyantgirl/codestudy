@@ -1,3 +1,8 @@
+import { v4 as uuidv4 } from 'https://cdn.skypack.dev/uuid';
+export function generateUUID() {
+  return uuidv4();
+}
+
 const newNote = document.querySelector('#note-new-create');
 const search = document.querySelector('#search');
 const mainNote = document.querySelector('#note-list');
@@ -17,8 +22,8 @@ memos = memos ?? [];
 setMemo();
 
 // 1. 새로쓰기 버튼을 클릭할 때 기존 리스트 화면 숨기고 새로쓰기 창을 나타냄
-newNoteBtn.addEventListener('click', function (e) {
-  e.preventDefault();
+newNoteBtn.addEventListener('click', function () {
+  clearNoteFields(); 
   showNewNote();
 });
 
@@ -45,9 +50,8 @@ function showMainNote() {
   mainNote.style.display = 'block'; // 메모 리스트 화면 보이기
   newNoteBtn.style.display = 'block'; // 새로 쓰기 버튼 보이기
   search.style.display = 'flex';
-
+  clearNoteFields();
 }
-
 
 // 새로 쓰기 화면 보이기 함수
 function showNewNote() {
@@ -60,12 +64,11 @@ function showNewNote() {
   if (memoContent == "") {
     deleteBtn.style.display = 'none';
   } else {
-    deleteBtn.style.display = 'flexbox';
+    deleteBtn.style.display = 'inline';
   }
 }
 
-
-//3. 저장하기 버튼을 클릭할때 실행되는 이벤트 리스너
+// 3. 저장하기 버튼을 클릭할때 실행되는 이벤트 리스너
 saveBtn.addEventListener('click', function () {
   let newMemo = {};
   let memoTitle = newNote.querySelector('#note-box-create__title').value;
@@ -79,6 +82,7 @@ saveBtn.addEventListener('click', function () {
     if (result) {
       saveMemo(); //메모 저장 함수 호출
       showMainNote();
+      setMemo();
     } else {
       // 아니오를 선택한 경우의 처리
       // 별다른 처리를 하지 않으면 작성 중이던 창으로 돌아갑니다
@@ -89,157 +93,189 @@ saveBtn.addEventListener('click', function () {
   }
 });
 
-
 // 3-1 새 메모를 메인 리스트에 추가하는 함수
+// 메모 아이디를 확인해 새 메모인지 기존 메모 수정인지 확인
+//새 메모인 경우 addMemoToList() 함수를 호출, 기존 메모를 수정하는 경우 updateMemoInList() 함수를 호출
 function saveMemo() {
-  let newMemo = {};
   let memoTitle = newNote.querySelector('#note-box-create__title').value;
   let memoContent = newNote.querySelector('#note-box-create__content').value;
   let now = new Date();
 
-  // 로컬스토리지에서 id 값을 가져오고 없으면 0으로 설정
-  let id = JSON.parse(localStorage.getItem('id'));
-  id = id ?? 0;
+  //uuid와 moment 메서드를 id와 타임스탬프로 활용
+  let uuid = uuidv4();
+  const timestamp = moment().valueOf();
 
-  // newMemo 객체에 id, 제목, 내용, 날짜 저장
-  newMemo.id = id;
-  newMemo.title = memoTitle;
-  newMemo.content = memoContent;
-  newMemo.date = `${now.getDate()}`;
-  newMemo.month = `${now.getMonth() + 1}`;
-  newMemo.day = `${now.getDay()}`;
-  memos.push(newMemo);
+  // // 로컬스토리지에서 id 값을 가져오고 없으면 0으로 설정
+  // let id = JSON.parse(localStorage.getItem('id'));
+  // id = id ?? 0;
 
-  // 메모와 id 저장
-  localStorage.setItem('memos', JSON.stringify(memos));
-  localStorage.setItem('id', JSON.stringify(++id));
+  let memoId = noteBox.dataset.id;
+  let isNewMemo = memoId === undefined || memoId === '';
+
+  // 메모 수정 또는 새 메모 추가
+  if (isNewMemo) {
+    // 새 메모 추가
+    let newMemo = {
+      id: uuid,
+      createdAt: timestamp,
+      title: memoTitle,
+      content: memoContent,
+      date: `${now.getDate()}`,
+      month: `${now.getMonth() + 1}`,
+      day: `${now.getDay()}`
+    };
+    memos.push(newMemo);
+
+    // 메모와 id 저장
+    localStorage.setItem('memos', JSON.stringify(memos));
+
+    // 리스트에 메모 추가
+    addMemoToList(newMemo);
+  } else {
+    // 기존 메모 수정
+    let index = memos.findIndex(m => m.id == memoId);
+    if (index !== -1) {
+      memos[index].title = memoTitle;
+      memos[index].content = memoContent;
+
+      // 로컬스토리지 업데이트
+      localStorage.setItem('memos', JSON.stringify(memos));
+
+      // 메모 리스트 업데이트
+      updateMemoInList(memoId, memoTitle, memoContent);
+    }
+  }
 
   // 제목, 내용 필드 초기화
+  clearNoteFields();
+}
+
+// 필드 초기화 함수
+function clearNoteFields() {
   newNote.querySelector('#note-box-create__title').value = '';
   newNote.querySelector('#note-box-create__content').value = '';
-
-  // 메모 리스트 갱신
-  setMemo();
+  noteBox.dataset.id = '';
+  deleteBtn.style.display = 'none';
 }
 
 // 메모 리스트 갱신 함수
 function setMemo() {
   const noteList = document.querySelector('#note-list');
+  noteList.innerHTML = '';
+
+  // memos 배열을 날짜 역순으로 정렬 (timestamp createdAt 기준)
+  memos.sort((a, b) => b.createdAt - a.createdAt);
+
+  // 메모 리스트 업데이트
+  memos.forEach(memo => {
+    addMemoToList(memo);
+  });
+}
+
+// 메모 리스트에 메모 추가 함수
+function addMemoToList(memo) {
+  const noteList = document.querySelector('#note-list');
   const dayList = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   const monthList = ['January', 'February', 'March', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-  // 메모 리스트 초기화
-  noteList.innerHTML = '';
+  // note-container div 생성
+  let noteContainer = document.createElement('div');
+  noteContainer.classList.add('note-container');
+  noteContainer.dataset.id = memo.id;
 
-  // 메모 리스트 업데이트
-  for (let i = memos.length - 1; i >= 0; i--) {
-    //수정화면 콘텐츠 박스에 dataset id 부여
-    noteBox.dataset.id = memos[i].id;
+  // 날짜 div 생성
+  let date = document.createElement('div');
+  date.id = 'note-date';
+  date.textContent = memo.date;
 
-    // note-container div 생성
-    let noteContainer = document.createElement('div');
-    noteContainer.classList.add('note-container');
-    noteContainer.dataset.id = memos[i].id;
+  // 요일 div 생성
+  let day = document.createElement('div');
+  day.id = 'note-dayofweek';
+  day.textContent = dayList[memo.day];
 
-    // 날짜 div 생성
-    let date = document.createElement('div');
-    date.id = 'note-date';
-    date.textContent = memos[i].date;
+  // 월 div 생성
+  let month = document.createElement('div');
+  month.id = 'note-month';
+  month.textContent = monthList[memo.month];
 
-    //요일 div 생성
-    let day = document.createElement('div');
-    day.id = 'note-dayofweek';
-    day.textContent = dayList[memos[i].day];
+  // 내용 div 생성
+  let content = document.createElement('div');
+  content.id = 'note-content';
+  content.classList.add('note-content-preview');
+  content.textContent = memo.content;
 
-    //월 div 생성
-    let month = document.createElement('div');
-    month.id = 'note-month';
-    month.textContent = monthList[memos[i].month];
+  // 제목 div 생성
+  let title = document.createElement('div');
+  title.id = 'note-title';
+  title.textContent = memo.title;
 
-    // 내용 div 생성
-    let content = document.createElement('div');
-    content.id = 'note-content';
-    content.classList.add('note-content-preview');
-    content.textContent = memos[i].content;
+  // 수정 버튼 div 생성
+  let modify = document.createElement('div');
+  modify.id = 'note-modify';
+  modify.textContent = 'modify';
+  modify.style.display = 'none'; // 초기 상태는 숨김
 
-    // 수정버튼 div 생성
-    let modify = document.createElement('div');
-    modify.id = 'note-modify';
-    modify.textContent = 'modify';
-    modify.style.display = 'none'; // 초기 상태는 숨김
+  // 왼쪽 부분 생성 및 추가
+  let leftDiv = document.createElement('div');
+  leftDiv.classList.add('note-container_left');
+  leftDiv.appendChild(date);
+  leftDiv.appendChild(title);
+  leftDiv.appendChild(content);
 
-    // 왼쪽 부분 생성 및 추가
-    let leftDiv = document.createElement('div');
-    leftDiv.classList.add('note-container_left');
-    leftDiv.appendChild(date);
-    leftDiv.appendChild(content);
+  // 오른쪽 부분 생성 및 추가
+  let rightDiv = document.createElement('div');
+  rightDiv.classList.add('note-container_right');
+  rightDiv.appendChild(day);
+  rightDiv.appendChild(month);
+  rightDiv.appendChild(modify);
 
-    // 오른쪽 부분 생성 및 추가
-    let rightDiv = document.createElement('div');
-    rightDiv.classList.add('note-container_right');
-    rightDiv.appendChild(day);
-    rightDiv.appendChild(month);
-    rightDiv.appendChild(modify);
+  // noteContainer에 왼쪽, 오른쪽 부분 추가
+  noteContainer.appendChild(leftDiv);
+  noteContainer.appendChild(rightDiv);
 
-    // noteContainer에 왼쪽, 오른쪽 부분 추가
-    noteContainer.appendChild(leftDiv);
-    noteContainer.appendChild(rightDiv);
+  // note_list에 noteContainer 추가
+  noteList.appendChild(noteContainer);
 
-    // note_list에 noteContainer 추가
-    noteList.appendChild(noteContainer);
+  // 수정 버튼 자바스크립트를 사용한 Hover 기능 추가
+  noteContainer.addEventListener('mouseenter', function () {
+    modify.style.display = 'block';
+  });
 
-    // 수정버튼 자바스크립트를 사용한 Hover 기능 추가
-    noteContainer.addEventListener('mouseenter', function () {
-      modify.style.display = 'block';
-    });
+  noteContainer.addEventListener('mouseleave', function () {
+    modify.style.display = 'none';
+  });
 
-    noteContainer.addEventListener('mouseleave', function () {
-      modify.style.display = 'none';
-    });
-
-    // 수정 버튼 이벤트 핸들러 등록
-    modify.addEventListener('click', function (e) {
-      const memoId = e.target.closest('.note-container').dataset.id;
-      editMemo(memoId);
-      showNewNote();
-    });
-  }
-}
-
-// 수정 버튼 클릭 이벤트 리스너 설정 (이벤트 위임 사용)
-//modifyBtn는 페이지가 처음 로드될 때는 존재하지 않기 때문에 이벤트리스너가 적용되지 않음.
-//부모요소에 이벤트요소를 추가하고, 이벤트가 발생할 때 이벤트의 target을 이용해 요소를 확인
-document.querySelector('#note-list').addEventListener('click', function (e) {
-  if (e.target && e.target.id === 'note-modify') {
+  // 수정 버튼 이벤트 핸들러 등록
+  modify.addEventListener('click', function (e) {
     const memoId = e.target.closest('.note-container').dataset.id;
     editMemo(memoId);
     showNewNote();
-    registerModifyButtonEvents();
-  }
-});
+  });
+}
 
 // 수정 버튼 클릭 시 기존 작성된 내용 불러오기 
-//파인드인덱스, 파인드는 챗지피티도움으로 하긴했는데 이해가 어렵군아...
 function editMemo(id) {
   const index = memos.findIndex(m => m.id == id);
   if (index !== -1) {
     const memo = memos[index];
     document.querySelector('#note-box-create__title').value = memo.title;
     document.querySelector('#note-box-create__content').value = memo.content;
-    memos.splice(index, 1);
-    showNewNote();
+    noteBox.dataset.id = memo.id;
+    deleteBtn.style.display = 'inline';
   }
 }
 
-function registerModifyButtonEvents() {
-  const modifyButtons = document.querySelectorAll('#note-list .note-modify');
-  modifyButtons.forEach(button => {
-    button.addEventListener('click', function (e) {
-      const memoId = e.target.closest('.note-Box').dataset.id;
-      editMemo(memoId);
-      showNewNote();
-    });
-  });
+// 메모 리스트에서 개별 메모 업데이트 함수
+function updateMemoInList(id, title, content) {
+  const noteContainer = document.querySelector(`.note-container[data-id='${id}']`);
+  if (noteContainer) {
+    const contentDiv = noteContainer.querySelector('#note-content');
+    contentDiv.textContent = content;
+
+    // titleDiv 수정 (제목은 미리보기에서 표시되지 않는 경우, 이 부분을 필요에 따라 수정)
+    // const titleDiv = noteContainer.querySelector('#note-title');
+    // titleDiv.textContent = title;
+  }
 }
 
 // 삭제버튼 클릭 시 현재 불러와진 내용 삭제하기
@@ -249,14 +285,13 @@ deleteBtn.addEventListener('click', function (e) {
   deleteMemo(memoId);
 });
 
-
 // 메모 삭제 함수
 function deleteMemo(id) {
   const index = memos.findIndex(m => m.id == id);
-  if(index !== -1){
+  if (index !== -1) {
     //삭제 여부 확인
     const result = confirm('작성한 노트를 삭제하시겠어요? 삭제한 후에는 작업을 되돌릴 수 없습니다.');
-    if(result) {
+    if (result) {
       memos.splice(index, 1); // memos배열에서 제거
       localStorage.setItem('memos', JSON.stringify(memos)); // 로컬스토리지 업데이트
 
@@ -267,26 +302,18 @@ function deleteMemo(id) {
   }
 };
 
-
-
 // 각 노트 컨테이너 클릭 시 노트 전체 내용 보여주기 
-const noteContainers = document.querySelectorAll('.note-container');
-// 모든 .note-container 요소를 선택
-//셀렉터 올을 사용해야 모든 요소가 선택되는걸 잊지마...
-
-// 각 .note-container 요소에 이벤트 리스너를 추가
-noteContainers.forEach(function(noteContainer) {
-  noteContainer.addEventListener('click', function() {
+// 이벤트 위임을 사용해 동적으로 추가된 요소에도 이벤트 리스너 적용
+mainNote.addEventListener('click', function (e) {
+  const noteContainer = e.target.closest('.note-container');
+  if (noteContainer) {
     const noteContainerLeft = noteContainer.querySelector('.note-container_left');
-    const content = noteContainerLeft.querySelector(':nth-child(2)');
+    const content = noteContainerLeft.querySelector('#note-content');
     if (content.classList.contains('note-content-preview')) {
       content.classList.remove('note-content-preview');
+
     } else {
       content.classList.add('note-content-preview');
     }
-  });
+  }
 });
-
-
-//하 삭제버튼 어디감? 찾아야됨
-//왜 자꾸 새버튼 누르는데 수정으로 연결돼 ? 이것도 고쳐야돼 염병
