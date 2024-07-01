@@ -33,11 +33,11 @@ let cardLink = [
     link : "",
     linkTitle : "",
   },
-  {
-    id: "project",
-    link : "./project/mbti/index.html",
-    linkTitle : "🎨 MBTI별 좋아하는 컬러",
-  },
+  // {
+  //   id: "project",
+  //   link : "./project/mbti/index.html",
+  //   linkTitle : "🎨 MBTI별 좋아하는 컬러",
+  // },
   {
     id: "project",
     link : "./project/songmuwikii/index.html",
@@ -136,6 +136,7 @@ let notion = `
         <a id="tag_link" href="https://scythe-guanaco-113.notion.site/02-CSS-00843eb220f44c69ad5d4da8920df7cf?pvs=4" target="_blank"><span id="css" class="nav">css</a></span>
         <a id="tag_link" href="https://scythe-guanaco-113.notion.site/03-Jscript-9fe8f7033d5848d5924f71fb0aea7f0f?pvs=4" target="_blank"><span id="js" class="nav">js</a></span>
         <a id="tag_link" href="https://scythe-guanaco-113.notion.site/01-vue-aa86c35a0cfc4b229cadcd03ba34339d?pvs=4" target="_blank"><span id="vue" class="nav">vue</a></span>
+        <a id="tag_link" href="https://www.notion.so/js-f6c4e3e1aee249408182bbb811ec697f?pvs=4" target="_blank"><span id="toy" class="nav">toy project</a></span>
     </div>
 </div>`;
 
