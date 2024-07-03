@@ -17,8 +17,10 @@ const deleteBtn = document.querySelector('#note__btn--delete');
 let memos = JSON.parse(localStorage.getItem('memos'));
 memos = memos ?? [];
 
-// 페이지 로드마다 메모 리스트 초기화
+// 페이지 로드마다 메모 리스트 초기화, 최신순 정렬
 setMemo();
+sortByLatest();
+
 
 // 1. 새로쓰기 버튼을 클릭할 때 기존 리스트 화면 숨기고 새로쓰기 창을 나타냄
 newNoteBtn.addEventListener('click', function () {
@@ -120,8 +122,8 @@ function saveMemo() {
       title: memoTitle,
       content: memoContent,
       date: `${now.getDate()}`,
-      month: `${now.getMonth() + 1}`,
-      day: `${now.getDay()}`
+      month: `${now.getMonth() -1}`,
+      day: `${now.getDay() - 1}`
     };
     memos.push(newMemo);
 
