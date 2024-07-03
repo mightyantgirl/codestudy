@@ -61,8 +61,10 @@ function showNewNote() {
   newNoteBtn.style.display = 'none';// 새로 쓰기 버튼 숨기기
   search.style.display = 'none';
 
+  // 수정 화면에서 삭제버튼 노출 조건
   let memoContent = newNote.querySelector('#note-box-create__content').value;
-  if (memoContent == "") {
+  let memoTitle = newNote.querySelector('#note-box-create__title').value;
+  if (memoContent == "" && memoTitle == "") {
     deleteBtn.style.display = 'none';
   } else {
     deleteBtn.style.display = 'inline';
@@ -105,10 +107,6 @@ function saveMemo() {
   //uuid와 moment 메서드를 id와 타임스탬프로 활용
   let uuid = uuidv4();
   const timestamp = moment().valueOf();
-
-  // // 로컬스토리지에서 id 값을 가져오고 없으면 0으로 설정
-  // let id = JSON.parse(localStorage.getItem('id'));
-  // id = id ?? 0;
 
   let memoId = noteBox.dataset.id;
   let isNewMemo = memoId === undefined || memoId === '';
@@ -172,6 +170,7 @@ searchInput.addEventListener('input', function(){
     setMemo(); // 검색어가 없으면 전체 메모를 다시 표시
   }
 })
+
 //검색기능
 //filter활용
 function searchMemos(query) {
