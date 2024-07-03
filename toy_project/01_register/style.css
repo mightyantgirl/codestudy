@@ -71,7 +71,13 @@ label {
   display: none; /* 기본적으로 숨김 처리 */
 }
 
-#password-error-message {
+#password-error-message__1, #password-error-message__2 {
+  color: red;
+  text-align: center;
+  display: none; /* 기본적으로 숨김 처리 */
+}
+
+#name-error-message {
   color: red;
   text-align: center;
   display: none; /* 기본적으로 숨김 처리 */
@@ -87,7 +93,7 @@ label {
   background-color: #fff;
   width: 680px;
   height: 750px;
-  margin: 0 auto;
+  margin: 50px auto;
   border-radius: 20px;
   padding: 20px;
   display: flex;
