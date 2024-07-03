@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let valid = true;
 
     // 이름 유효성 검사
-    // 특수문자 안됨. 길이는 2글자 이상. 공백 안됨.
     const name = usernameField.value;
     if (name.length < 2 || !validateName(name)) {
       usernameError.style.display = "block";
@@ -26,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const email = emailField.value;
     if (!validateEmail(email)) {
       emailError.style.display = "block";
-      emailField.focus(); // 포커스 이동
       valid = false;
     } else {
       emailError.style.display = "none";
@@ -59,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function validateName(name){
-    const nameRe = /^[a-zA-Z0-9]*$/;
+    const nameRe = /^[가-힣]*$/;
     return nameRe.test(name);
   }
 });
