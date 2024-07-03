@@ -157,18 +157,66 @@ function clearNoteFields() {
   deleteBtn.style.display = 'none';
 }
 
+
+//검색창 이벤트핸들러
+const searchInput = document.querySelector('#search__input');
+
+searchInput.addEventListener('input', function(){
+  const query = searchInput.value.toLowerCase().trim();
+  // 사용자 입력을 표준화하고 불필요한 공백을 제거하기 위해 value에 매서드 결합
+  if (query) {
+    searchMemos(query);
+  } else {
+    setMemo(); // 검색어가 없으면 전체 메모를 다시 표시
+  }
+})
+//검색기능
+//filter활용
+function searchMemos(query) {
+  const filteredMemos = memos.filter(memo =>
+    memo.title.toLowerCase().includes(query) || 
+    memo.content.toLowerCase().includes(query)
+  );
+  updateMemoList(filteredMemos); // 필터된 메모 리스트를 업데이트
+}
+
+// 필터된 메모 리스트를 UI에 표시하는 함수
+function updateMemoList(filteredMemos) {
+  const noteList = document.querySelector('#note-list');
+  noteList.innerHTML = ''; // 기존 메모 리스트 초기화
+
+  // 필터된 memos 배열을 사용하여 메모 리스트 업데이트
+  filteredMemos.forEach(memo => {
+    addMemoToList(memo);
+  });
+}
+
 // 메모 리스트 갱신 함수
 function setMemo() {
   const noteList = document.querySelector('#note-list');
   noteList.innerHTML = '';
 
-  // memos 배열을 날짜 역순으로 정렬 (timestamp createdAt 기준)
-  memos.sort((a, b) => b.createdAt - a.createdAt);
-
   // 메모 리스트 업데이트
   memos.forEach(memo => {
     addMemoToList(memo);
   });
+}
+
+// 정렬 필터링 함수
+// sort()활용
+function sortByLatest() {
+  memos.sort((a, b) => b.createdAt - a.createdAt);
+  setMemo(); // 정렬 후 UI 갱신
+}
+
+function sortByEarliest() {
+  memos.sort((a, b) => a.createdAt - b.createdAt);
+  setMemo(); // 정렬 후 UI 갱신
+}
+
+function sortByAlphabetical() {
+  memos.sort((a, b) => a.title.localeCompare(b.title));
+  setMemo(); // 정렬 후 UI 갱신
 }
 
 // 메모 리스트에 메모 추가 함수
@@ -344,7 +392,7 @@ document.addEventListener('DOMContentLoaded', function () {
     a.textContent = text;
     dropdownContent.appendChild(a);
 
-    // 링크 클릭 시 버튼 텍스트 변경
+    // 링크 클릭 시 버튼 텍스트 변경 및 정렬 함수 호출
     a.addEventListener('click', function (event) {
       event.preventDefault(); // 링크의 기본 동작 막기
 
@@ -386,18 +434,3 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
-
-//정렬 기능 구현
-
-// function sortByLatest() {
-//   //최신순 정렬 함수
-//   memos.sort((a, b) => b.createdAt - a.createdAt);
-//   setMemo(); // 정렬 후 화면 갱신
-// }
-
-
-// function sortByEarliest() {
-//   //오래된순 정렬 함수
-//   memos.sort((a, b) => a.createdAt - b.createdAt);
-//   setMemo(); // 정렬 후 화면 갱신
-// };
