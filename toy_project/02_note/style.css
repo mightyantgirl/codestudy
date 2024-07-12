@@ -311,6 +311,124 @@ h3 {
   font-size: 16px;
 }
 
+/* 회원가입창 */
+
+
+#note-membership-join {
+  display: none;
+  margin-top: 20px;
+}
+
+
+input {
+  border-radius: 6px;
+  border: 1.5px solid #DADADA;
+  font-size: 16px;
+  padding: 10px;
+  width: 500px;
+  height: 50px;
+  transition: border-color 0.3s ease;
+}
+
+input::placeholder {
+  color: #DADADA;
+}
+
+input:hover {
+  border-color: rgb(190, 190, 190);
+}
+
+input:focus {
+  border-color: blue;
+  outline: none;
+}
+
+label {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#joinBtn {
+  display: inline-block;
+  background-color: blue;
+  border-radius: 6px;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 10px;
+  text-align: center;
+  display: block;
+  margin: 24px 0;
+  width: 500px;
+  height: 50px;
+}
+
+#register-form {
+  width: 100%;
+  max-width: 500px;
+}
+
+#password {
+  margin-bottom: 10px;
+}
+
+#email-error-message {
+  color: red;
+  text-align: center;
+  display: none; /* 기본적으로 숨김 처리 */
+}
+
+#password-error-message__1, #password-error-message__2 {
+  color: red;
+  text-align: center;
+  display: none; /* 기본적으로 숨김 처리 */
+}
+
+#name-error-message {
+  color: red;
+  text-align: center;
+  display: none; /* 기본적으로 숨김 처리 */
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+/* 
+.container {
+  background-color: #fff;
+  width: 680px;
+  height: 750px;
+  margin: 50px auto;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+
+
+#join {
+  color: #fff;
+  font-size: 14px;
+  border-radius: 10px;
+  padding: 8px 16px;
+  background-color: #cacaca;
+  display: inline;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  position: absolute;
+  right: 65px;
+  top: 80px;
+  border: none;
+}
+
+
+
+
 /* 반응형 스타일 (모바일) */
 @media only screen and (max-width:500px) {
   .main-container {

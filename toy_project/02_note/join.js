@@ -9,7 +9,6 @@ const mainNote = document.querySelector('#note-list');
 const noteBox = document.querySelector('.note-box');
 const memberJoin = document.querySelector('#note-membership-join');
 const mainJoinBtn = document.querySelector('#join');
-const memberName = document.querySelector('#member');
 
 const saveBtn = document.querySelector('#note__btn--save');
 const newNoteBtn = document.querySelector('#new-btn');
@@ -55,6 +54,7 @@ function showMemberJoin() {
   search.style.display = 'none';
   memberJoin.style.display = 'block';
 }
+
 
 // 메모 리스트 보이기 함수
 function showMainNote() {
@@ -452,6 +452,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById('register-form');
   const usernameField = document.getElementById('name');
@@ -462,10 +463,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const passwordInputs = passwordField.querySelectorAll("input[type='password']");
   const passwordError1 = document.getElementById("password-error-message__1");
   const passwordError2 = document.getElementById("password-error-message__2");
-
+  const memberName = document.querySelector('#member');
 
   form.addEventListener("submit", function (e) {
-    e.preventDefault(); // 폼 제출을 막음
+    // e.preventDefault(); // 폼 제출을 막음
     let valid = true;
 
     // 이름 유효성 검사
@@ -506,69 +507,54 @@ document.addEventListener("DOMContentLoaded", function () {
       passwordError2.style.display = "none";
     }
 
-    if (valid) {
-      const userData = {
-        username: usernameField.value,
-        email: emailField.value,
-        password: passwordInputs[0].value
-      };
-
-      //   //post 요청으로 데이터 전송
-      //   fetch('http://127.0.0.1:3000/index.html', {
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'application/json'
-      //     },
-      //     body: JSON.stringify(userData)
-      //   })
-      //     .then(response => response.json())
-      //     .then(data => {
-      //       alert('회원가입 정보가 저장되었습니다!'); // 가입 얼럿
-      //       form.reset(); // 폼 초기화
-      //       memberJoin.style.display = 'none';
-      //       showMainNote();
-      //       memberName.innerHTML = `안녕하세요! ${usernameField.value} 님!`;
-      //     })
-      //     .catch(error => console.error('Error:', error));
-      // }
-      // });
-
-      localStorage.setItem('userData', JSON.stringify(userData)); // 스토리지 저장
-      alert('회원가입 정보가 저장되었습니다!'); // 가입 얼럿
-      form.reset(); // 폼 초기화
-
-      mainJoinBtn.style.display = 'none'; // 가입버튼 숨기기
-      memberJoin.style.display = 'none'; // 가입 인풋 숨기기
-      showMainNote(); // 메인 리스트 보이기
-
-      memberName.innerHTML = `안녕하세요! ${userData.username} 님!`;
+    if(!valid) {
+      e.preventDefault();
     }
+
+    // if (valid) {
+    //   const userData = {
+    //     username: usernameField.value,
+    //     email: emailField.value,
+    //     password: passwordInputs[0].value
+    //   };
+
+    //   //post 요청으로 데이터 전송
+    //   fetch('http://127.0.0.1:3000/index.html', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify(userData)
+    //   })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //       alert('회원가입 정보가 저장되었습니다!'); // 가입 얼럿
+    //       form.reset(); // 폼 초기화
+    //       memberJoin.style.display = 'none';
+    //       showMainNote();
+    //       memberName.innerHTML = `안녕하세요! ${usernameField.value} 님!`;
+    //     })
+    //     .catch(error => console.error('Error:', error));
+    // }
   });
 
-  function validateEmail(email) {
-    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRe.test(email);
-  }
+//   localStorage.setItem('userData', JSON.stringify(userData)); // 스토리지 저장
+//   alert('회원가입 정보가 저장되었습니다!'); // 가입 얼럿
+//   form.reset(); // 폼 초기화
 
-  function validateName(name) {
-    const nameRe = /^[가-힣]*$/;
-    return nameRe.test(name);
-  }
-});
+//   memberJoin.style.display = 'none';
+//   showMainNote();
+//   memberName.innerHTML = `안녕하세요! ${usernameField.value} 님!`;
+// }
+//   });
 
-// 로그인 하지 않은 경우 로그인 및 가입 창 팝업
-newNoteBtn.addEventListener('click', function(){
-  const userDataString = localStorage.getItem('userData');
-  const userData = JSON.parse(userDataString);
+function validateEmail(email) {
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRe.test(email);
+}
 
-  if(!userData || !userData.username){
-    const result = confirm('로그인 이후 작성 가능합니다.');
-    if(result) {
-      showMemberJoin();
-      newNote.style.display = 'none'; // 새 메모 작성 창 숨기기
-      mainJoinBtn.style.display = 'none'; // 가입버튼 숨기기
-    }else {
-      showMainNote()
-    }
-  }
+function validateName(name) {
+  const nameRe = /^[가-힣]*$/;
+  return nameRe.test(name);
+}
 });
