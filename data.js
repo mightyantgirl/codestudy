@@ -17,14 +17,16 @@ let menu = [
   },
   {
     title : "coding apple",
-    date : "2024.03.09 ~",
-    subTitle1 : "인스타그램을 만들며 배워보는 Vue.js",
+    date : "2026.01.31 ~",
+    type : "js",
+    subTitle1 : "JavaScript 입문과 웹 UI개발",
   },
   {
-    title : "code it",
-    date : "2024.01.08 ~ 23",
-    subTitle1 : "html/css로 웹 사이트 만들기",
-  }
+    title : "coding apple",
+    date : "2024.03.09 ~",
+    type : "vue",
+    subTitle1 : "인스타그램을 만들며 배워보는 Vue.js",
+  },
 ];
 
 let cardLink = [
@@ -70,13 +72,15 @@ let cardLink = [
   },
   {
     id: "coding apple",
-    link : "./vue/index.html",
-    linkTitle : " 1️⃣ 허위매물 부동산 ",
+    type: "js",
+    link : "./js/01/index.html",
+    linkTitle : "📘 JS 기초",
   },
   {
-    id: "code it",
-    link : "./clone/02/index.html",
-    linkTitle : " ",
+    id: "coding apple",
+    type: "vue",
+    link : "./vue/index.html",
+    linkTitle : "🟢 Vue 프로젝트",
   },
 ]
 //같은 반복문 안에 쓰이는 배열안의 데이터의 갯수가 같아야 정상 작동 됨. 다를 경우 오류. 빈 배열이라도 넣어야함!
@@ -101,7 +105,10 @@ for (let i = 0; i < menu.length; i++){
   // 각 메뉴에 대한 하위 요소로 링크 추가
   let subLinksHTML = '';
   for (let j = 0; j < cardLink.length; j++) {
-    if (cardLink[j].id === menu[i].title) {
+    if (
+      cardLink[j].id === menu[i].title &&
+      cardLink[j].type === menu[i].type
+    ) {
       //조건문을 써서 id와 title이 같으면 포함시키는거임!! ㅜㅜ 헐 이런생각 어띃개하지 id까진 생각했는데 조건문 쓰는 생각은 못햇다..
       subLinksHTML += `
         <div class="sub">
