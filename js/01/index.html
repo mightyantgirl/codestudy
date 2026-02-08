@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2 id="hello">안녕하십니꺼</h2>
+    <div class="alert-box" id="alert">
+        <p id="title">얼럿박스 </p>    
+<br>
+
+    <button id="close-bt" onclick="close1()">닫기</button>
+    </div>
+    <button onclick="alert1('아이디를 입력하셈')">버튼1</button>
+    <button onclick="alert1('비밀번호를 입력하셈')">버튼2</button>
+    <button onclick="alert1('흠냐링')">버튼3</button>
+    
+    
+    <script>
+        function alert1(a) {
+            document.getElementById('title').innerHTML = a;
+            document.getElementById('alert').style.display = 'block';
+        
+        }
+        
+
+        function close1(){
+            document.getElementById('alert').style.display = 'none';
+        }
+     
+    </script>
+</body>
+</html>
+
